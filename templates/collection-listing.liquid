@@ -1,0 +1,52 @@
+<style>
+
+#collections-listing ul {
+list-style-type: none;
+list-style-position: outside;
+overflow: hidden; 
+}
+
+#collections-listing ul li {
+float: left;
+width: 200px;
+height: 300px;
+margin-right: 30px;
+}
+
+#collections-listing ul li.last-in-row {
+margin-right: 0;
+}
+
+</style>
+
+
+<div id="collections-listing">
+  <h2>Product Collections</h2>
+  <ul>
+  {% for collection in collections %}
+  {% unless collection.handle == 'frontpage' %}
+    <li class="{{ collection.handle }}-collection{% cycle '', '', '', ' last-in-row' %}">
+    {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+      <div class="collection">
+        <div class="collection-image">
+          <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{% if collection.image %}
+            {{ collection.image.src | collection_img_url: 'medium' | img_tag: collection_title }}{% else %}
+            {{ collection.products.first.featured_image | product_img_url: 'medium' | img_tag: collection_title }}{% endif %}
+          </a>
+        </div><!-- end of .collection-image -->
+        <div class="collection-description">
+          <h3>
+            <a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+              {{ collection.title }}
+            </a>
+            <small class="hint">
+              {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+            </small>
+          </h3>
+        </div><!-- end of .collection-description -->
+      </div><!-- end of .collection -->
+    </li>
+  {% endunless %}
+  {% endfor %}
+  </ul>
+</div><!-- end of #collection-listing -->

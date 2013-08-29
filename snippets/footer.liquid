@@ -1,0 +1,21 @@
+<footer class="row">
+	<div class="large-12 columns">
+		<hr>
+		<div class="row">
+			<div class="large-6 columns">
+			  <p>&copy; Copyright {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}. Built by Elkfox</p>
+			</div>
+			<div class="large-6 columns">
+			  <ul class="inline-list right">
+				{% if linklists.footer.links.size > 0 %}
+				<li role="navigation">
+				{% for link in linklists.footer.links %}
+				  <a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
+				{% endfor %}
+				</li>
+				{% endif %}
+			  </ul>
+			</div>
+		</div>
+	</div>
+</footer>

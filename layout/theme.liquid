@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">  
+  
+  {% comment %} Shopify Head Begin {% endcomment %}
+
+  {% if template == 'index' %}
+  <title>{{ shop.name }} | {{ page_title }}</title>
+  {% elsif template == '404' %}
+  <title>Page Not Found | {{ shop.name }}</title>
+  {% else %}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  {% endif %}
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description }}" />
+  {% endif %}
+  
+  {{ content_for_header }}
+
+  {{ 'normalize.css' | asset_url | stylesheet_tag }}
+  {{ 'style.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
+  
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+  
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+
+</head>
+
+<body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' }} antialiased" id="{{ page_title | handle }}">
+
+	<!-- Navigation -->
+		{% include 'header' %}
+	<!-- End Navigation -->
+  
+  <!-- Shopify Main Content -->
+  <main class="row" role="main">
+
+		{% if template == 'list-collections' %}
+		{% include 'collection-listing' %}
+		{% else %}
+		{{ content_for_layout }}
+		{% endif %}
+
+  </main><br>
+  <!-- End Shopify Main Content -->
+ 
+  <!-- Footer -->
+		{% include 'footer' %}
+  <!-- End Footer Content -->
+  
+  <script>
+    document.write('<script src=' + ('__proto__' in {} ? '{{ 'zepto.js' | asset_url }}' : '{{ 'jquery.js' | asset_url }}') + '><\/script>');
+  </script>
+  
+  <!--  {{ 'foundation.min.js' | asset_url | script_tag }} -->
+  
+  {{ 'foundation.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.alerts.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.clearing.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.cookie.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.dropdown.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.forms.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.joyride.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.magellan.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.orbit.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.reveal.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.section.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.tooltips.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.topbar.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.interchange.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.placeholder.js' | asset_url | script_tag }}
+  
+  {{ 'foundation.abide.js' | asset_url | script_tag }}
+  
+  <script>
+    $(document).foundation();
+  </script>
+  
+  <!-- Let's add a product zoom becaue Foundation doesn't have one. Thank's to Jack Moore! -->
+  {{ 'jquery.zoom.js' | asset_url | script_tag }}
+  
+</body>
+</html>
