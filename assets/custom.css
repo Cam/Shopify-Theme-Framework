@@ -7,7 +7,7 @@ ul {
 /* Cam's Custom Tiny Tags */
 .tag {
 	padding: 0 9px 0 8px;
-	background: #58a9e2;
+	background: #2ba6cb;
 	text-decoration: none;
 	-moz-border-radius-bottomright: 2px;
 	-webkit-border-bottom-right-radius: 2px;
@@ -34,7 +34,7 @@ ul {
 	left: -10px;
 	width: 0;
 	height: 1px;
-	border-color: transparent #58a9e2 transparent transparent;
+	border-color: transparent #2ba6cb transparent transparent;
 	border-style: solid;
 	border-width: 10px 10px 10px 0;
 	-moz-border-radius-topleft: 2px;
