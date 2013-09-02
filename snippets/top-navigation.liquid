@@ -1,32 +1,38 @@
 <!-- Top Nav Bar -->
-<nav class="top-bar">
-	<ul class="title-area">
-		<li class="name">
-			<h1><a href="/"><i class="icon-home"></i>{{ shop.name }}</a></h1>
-		</li>
-		<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-	</ul>
+	<nav class="top-bar" style="">
+			<ul class="title-area">
+				<li class="name">
+					<h1><a href="/"><i class="icon-home"></i>{{ shop.name }}</a></h1>
+				</li>
+				<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+			</ul>
+		<section class="top-bar-section">
+			<ul id="" class="left">
+				{% for link in linklists.main-menu.links %}
+					<li class="divider"></li>
+					<li>{{ link.title | link_to: link.url }}</li>
+				{% endfor %}
+			</ul>
+			<ul id="" class="right">
+				<li>
+					<a href="/cart"><i class="icon-shopping-cart"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+				</li>
+				<li class="divider"></li>
+				<!-- You can use the next li to add a checkout button if you like --> 
+				<!-- {% if cart.item_count > 0 %}
+				<li class="has-form">
+					<a class="small button" href="/checkout"><i class="icon-credit-card"></i> Check Out</a>
+				</li>
+				{% endif %} -->
+				<li class="has-form search-textarea">
+					<form action="/search" method="get" class="search-form" role="search">
+					<input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
+				</li>
+				<li class="has-form search-submit">
+					<input class="small button" type="submit" id="search-submit" value="Search" /></form>
+				</li>
+			</ul>
 
-	<section class="top-bar-section">
-		<ul class="right">
-			{% for link in linklists.main-menu.links %}
-				<li>{{ link.title | link_to: link.url }}</li>
-			{% endfor %}
-			<li class="divider"></li>
-			<li><a href="/cart"><i class="icon-shopping-cart"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a></li>
-			{% if cart.item_count > 0 %}
-			<li class="divider"></li>
-			<li class="has-form"><a class="button" href="/checkout"><i class="icon-credit-card"></i> Check Out</a></li>
-			{% endif %}
-			<li class="search">
-				<form action="/search" method="get" class="search-form" role="search"><input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
-			</li>
-			<li class="has-button">
-				<input  class="small button" type="submit" id="search-submit" value="Search" /></form>
-			</li>
-
-		</ul>
 	</section>
-
-</nav>
+	</nav>
 <!-- End Top Nav Bar -->

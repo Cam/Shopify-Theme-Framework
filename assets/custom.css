@@ -3,6 +3,17 @@ ul {
 	list-style-position: inside;
 }
 
+/* Set the Search in the header to sit together nicely on wide screens */
+@media only screen and (min-width: 58.75em) {
+	.top-bar .search-textarea {
+		padding-right: 0 !important;
+	}
+	.top-bar .search-submit {
+		padding-left: 0 !important;
+	}
+}
+
+/* Below here are CSS elements that are just here for fun c/o Cam Gould */
 
 /* Cam's Custom Tiny Tags */
 .tag {

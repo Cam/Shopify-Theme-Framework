@@ -118,33 +118,6 @@
 		</div>
 		<!-- END #product-details -->
 
-		<!-- Prev / Next -->
-		<div class="large-12 columns">
-		
-			<br />
-	
-			  {% if collection %}
-				{% if collection.previous_product or collection.next_product %}
-				<div>     
-				{% if collection.previous_product %}
-				  {% capture prev_url %}{{ collection.previous_product}}#content{% endcapture %}
-				  <span class="left">
-				  		<a class="tiny button" href="{{ link_to: prev_url }}">Previous Item</a>
-				  </span>
-				{% endif %}
-				{% if collection.next_product %}
-				  {% capture next_url %}{{ collection.next_product}}#content{% endcapture %}
-				  <span class="right">
-				  		<a class="tiny button" href="{{ link_to: next_url }}">Next Item</a>
-				  </span>
-				{% endif %}
-				</div>
-				{% endif %}
-			  {% endif %}
-		  
-		</div>
-		<!-- END Prev / Next -->
-
   </form>
 
 </div>
