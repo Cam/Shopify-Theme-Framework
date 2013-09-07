@@ -1,0 +1,81 @@
+{% comment %}
+Re-use the 'rte' class wherever you output content that was added by a merchant using
+the Rich Text Editor ( 'rte' stands for rich text editor ).
+Style all HTML elements in that content the same way across the board.
+Use the 'rte' class in your CSS to help maintain that consistency.
+Example: the h2 element should have the same size and color in:
+- product descriptions
+- collection descriptions
+- 'page' pages' content
+- blog post
+{% endcomment %}
+
+<div class="large-12 columns" id="pagination">
+	<h1>{{ page.title }}</h1>
+
+	{{ page.content }}
+  
+	{% form 'contact' %}
+
+	{% if form.posted_successfully? %}
+	<div class="successForm feedback">
+		<p>Thanks for contacting us! We'll get back to you as soon as possible.</p>
+	</div>
+	{% endif %}
+
+	{% if form.errors %}
+	<div class="errorForm feedback">
+		<!-- {{ form.errors.size }} or {{ form.errors | size }} -->
+		<p>Oops, sorry. We were unable to submit your inquiry because it contained {{ form.errors | size | pluralize: 'an error', 'a few errors' }}. Please correct the following and submit again:</p>
+		<p>
+			{% for field in form.errors %}
+				<span class="alert label">The {{ field | capitalize | replace: 'Body', 'Message' }} field {{ form.errors.messages[field] }}</span><br />
+			{% endfor %}
+		</p>
+	</div>
+	{% endif %}
+
+	<div class="row">
+		<div class="large-4 columns">
+			<label>Your Name</label>
+			<input type="text" id="contactFormName" name="contact[name]" placeholder="John Doe" />
+		</div>
+		<div class="large-4 columns">
+			<label>Email</label>
+			<input type="email" id="contactFormEmail" name="contact[email]" placeholder="john@example.com" />
+		</div>
+		<div class="large-4 columns">
+			<label>Phone Number</label>
+			<input type="tel" id="contactFormTelephone" name="contact[phone]" placeholder="555-555-1234" />
+		</div>
+	</div>
+		<div>
+			<label>Message</label>
+			<textarea rows="20" cols="75" id="contactFormMessage" name="contact[body]" placeholder="Your Message"></textarea>
+		</div>
+		<div>
+			<input type="submit" class="button" id="contactFormSubmit" value="Send" />
+		</div>    		
+
+	{% endform %}
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+			<link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+			<!--[if lte IE 8]>
+			<link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet' >
+			<![endif]-->
+			<div id='map' style="width:100%;height:400px;"></div>
+			<script type='text/javascript'>
+				var map = L.mapbox.map('map', 'camgould.map-259dmlbe')
+				.setView([-37.84, 144.9], 13);
+				// disable drag and zoom handlers
+				map.dragging.disable();
+				map.touchZoom.disable();
+				map.doubleClickZoom.disable();
+				map.scrollWheelZoom.disable();
+			</script>
+		</div>
+	</div>
+</div>

@@ -5,7 +5,34 @@
 <!-- Move the Top Nav (above) inside the div below to contain it inside the fixed width row -->
 
 <header class="row" role="banner">
-  <div class="large-12 columns">
 
-	</div>
+	<!-- Uncomment the next 5 lines to include a signup link in the header -->
+	<!-- {% if shop.customer_accounts_optional %}
+		<div class="large-12 columns" id="signup">
+			{{ 'Sign up' | customer_register_link }}
+		</div>
+	{% endif %} -->
+
+	{% if settings.site_title %}
+
+		<div class="small-12 columns">
+			{% if settings.use_logo %}
+
+				<div class="left">
+					<!-- Logo -->
+					<a id="logo" href="/" role="banner">
+						{{ 'logo.png' | asset_url | img_tag: shop.name }}
+					</a>
+					<!-- End Logo -->
+				</div>
+
+			{% endif %}
+
+			<h1 id="site-title" role="banner">
+				<a href="/">{{ shop.name }}</a>
+			</h1>
+		</div>
+
+	{% endif %}
+
 </header>

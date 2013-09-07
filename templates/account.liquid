@@ -1,0 +1,43 @@
+<div class="large-12 columns">
+
+	<h1>Customer Area</h1>
+	{{ 'Logout' | customer_logout_link }}
+	
+	<h3>Customer ID</h3>
+	{{ customer.id }}
+	
+	<h3>Email</h3>
+	{{ customer.email }}
+	
+	<h3>Addresses: {{ customer.addresses_count }}</h3>
+	
+	<h4>Default Adress</h4>
+	{% if customer.default_address != nil %}
+  		{{ customer.default_ddress.address1 }}
+	{% endif %}
+	
+	<br /><br />
+	
+	{% for address in customer.addresses %}
+		{{ address.street }}
+	{% endfor %}
+	
+	<br /><br />
+	
+	{{ "edit" | edit_customer_address_link: address.id }}
+	
+	{{ "delete" | delete_customer_address_link: address.id }}
+	
+	<h3>Orders: {% for order in customer.orders %}{{ customer.orders_count }}{% endfor %}</h3>
+	
+	<h4>Most Recent Order: {{ cancel_customer_order_link }}</h4>
+	{% for order in customer.orders %}
+		{{ customer.recent_order }}
+	{% endfor %}
+	
+	<h4>All Orders</h4>
+	{% for order in customer.orders %}
+  		{{ order.name }}
+	{% endfor %}
+	
+</div>

@@ -1,5 +1,5 @@
 <div class="section-info">
-<p>Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our <a title="Open Wiki in a new window" target="wiki" href="http://wiki.shopify.com/Theme_Settings">help page on theme settings</a> to learn more about how you can make your theme customizable.</p>
+	<p>Theme settings allow designers to provide an easy way for any user to customize the look and feel of their shop without having to delve into HTML or CSS code. Please see our <a title="Open Wiki in a new window" target="wiki" href="http://wiki.shopify.com/Theme_Settings">help page on theme settings</a> to learn more about how you can make your theme customizable.</p>
 </div>
 
 <fieldset>
@@ -16,8 +16,162 @@
       <td><input type="file" name="logo.png" id="logo_image" data-max-width="940" data-max-height="300" /></td>
     </tr>
     <tr>
-      <td colspan="2"><small>Maximum logo dimensions are 940px wide by 300px high.<br />Your uploaded file will be resized to fit within those constraints.<br />Need a full-width banner? Upload an image with a width of 940px, and a height of 300px or less.</small></td>
+      <td><label for="site_title">Include Site Title as 'Heading 1'</label></td>
+      <td><input type="checkbox" id="site_title" name="site_title" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>
+		  Maximum logo dimensions are 940px wide by 300px high.<br />
+		  Your uploaded file will be resized to fit within those constraints.<br />
+		  Need a full-width banner? Upload an image with a width of 940px, and a height of 300px or less.
+      	</small>
+      </td>
     </tr>
   </table>
   
+</fieldset>
+
+
+<fieldset>
+  <legend>Slideshow</legend>
+	<h3>Slideshow Options</h3>
+	
+	<table>
+		<tr>
+			<td><label for="slideshow_enable">Enable Slideshow on Home Page?</label></td>
+			<td><input type="checkbox" id="slideshow_enable" name="slideshow_enable" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_pause">Pause Slideshow On Hover?</label></td>
+			<td><input type="checkbox" id="slideshow_pause" name="slideshow_pause" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_image_1">Slideshow Image 1</label></td>
+			<td><input type="file" name="slideshow_image_1.png" id="slideshow_image_1" data-max-width="1000" data-max-height="563" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_image_2_enable">Use a second slideshow image?</label></td>
+			<td><input type="checkbox" id="use_logo" name="slideshow_image_2_enable" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_image_2">Slideshow Image 2</label></td>
+			<td><input type="file" name="slideshow_image_2.png" id="slideshow_image_2" data-max-width="1000" data-max-height="563" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_image_3_enable">Use a third slideshow image?</label></td>
+			<td><input type="checkbox" id="use_logo" name="slideshow_image_3_enable" /></td>
+		</tr>
+		<tr>
+			<td><label for="slideshow_image_3">Slideshow Image 3</label></td>
+			<td><input type="file" name="slideshow_image_3.png" id="slideshow_image_3" data-max-width="1000" data-max-height="563" /></td>
+		</tr>
+	</table>
+
+</fieldset>
+
+
+<fieldset>
+  <legend>Collections</legend>
+
+  	<table>
+		<tr>
+			<td><label for="products_per_row">Products Per Row</label></td>
+			<td>
+				<select name="products_per_row" id="products_per_row">
+			        <option value="2">2</option>
+					<option value="3" selected="selected">3</option>
+					<option value="4">4</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+
+  	<table>
+		<tr>
+		  <td><label for="pagination_limit">Products Per Page</label></td>
+		  <td>
+			<select name="pagination_limit" id="pagination_limit">
+			  <option value="48">48</option>
+			  <option value="36">36</option>
+			  <option value="24">24</option>
+			  <option value="12" selected="selected">12</option>
+			  <option value="9">9</option>
+			  <option value="8">8</option>
+			  <option value="6">6</option>
+			  <option value="4">4</option>
+			  <option value="3">3</option>
+			</select>
+		  </td>
+		</tr>
+	</table>
+
+	<table>	
+		<tr class="horizontal">
+		  <th><label for="show_sale_circle">Show sale circle on products?</label></th>
+		  <td>
+			<input type="checkbox" id="show_sale_circle" name="show_sale_circle" value="1" />
+		  </td>
+		</tr>
+	</table>
+	
+</fieldset>
+
+
+<fieldset>
+  <legend>Products</legend>
+
+  	<table>
+		<tr>
+			<td><label for="related-products">Show Related Products?</label></td>
+			<td><input type="checkbox" id="related-products" name="related-products" /></td>
+		</tr>
+	</table>
+	
+</fieldset>
+
+
+<fieldset>
+  <legend>Extra Widgets</legend>
+  
+  	<table>
+		<tr>
+		  <td><label for="footer_widgets_on">Enable Footer Widgets</label></td>
+		  <td><input type="checkbox" id="footer_widgets_on" name="footer_widgets_on" /></td>
+		</tr>
+	</table>
+
+	<h3>Mailchimp Form</h3>
+	<table>
+	<tr>
+		<td><label for="use_logo">Include Mailchimp Form</label></td>
+		<td><input type="checkbox" id="use_logo" name="use_logo" /></td>
+	</tr>
+	<tr>
+		<td><label for="logo_image">Mailchimp Form ID</label></td>
+		<td><input type="text" id="mailchimp_form_id" name="my_text" class="text" value="Form ID" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<small>
+				If you want to add a Mailchimp subscription form select 'Include Mailchimp Form'<br />
+				IMPORTANT: Make sure you add your Form ID!
+			</small>
+		</td>
+	</tr>
+	</table>
+	
+</fieldset>
+
+
+<fieldset>
+  <legend>Bottom Menu</legend>
+  
+  	<table>
+		<tr>
+		  <td><label for="bottom_menu_on">Enable Bottom Menu</label></td>
+		  <td><input type="checkbox" id="bottom_menu_on" name="bottom_menu_on" /></td>
+		</tr>
+	</table>
+	
 </fieldset>

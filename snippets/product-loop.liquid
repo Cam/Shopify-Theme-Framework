@@ -1,0 +1,41 @@
+{% capture collection_handle %}{{ product-loop | handleize }}{% endcapture %}
+{% capture url %}{% if collection_handle != "" %}/collections/{{ product-loop }}{{ product.url }}{% else %}{{ product.url }}{% endif %}{% endcapture %}
+<div class="product-preview{% if settings.products_per_row == "4" %} large-3 columns{% endif %}{% if settings.products_per_row == "3" %} large-4 columns{% endif %}{% if settings.products_per_row == "2" %} large-6 columns{% endif %}">
+  
+	<div class="product-preview-image-div">
+		{% if product.price_min < product.compare_at_price_min %}
+			{% if settings.show_sale_circle %}
+				<span class="sale-tag"></span>
+			{% endif %}
+		{% endif %}
+    	<a href="{{ url }}">
+      		<img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.title | escape  }}" />
+    	</a>
+	</div>
+  
+  <div class="panel preview-details">
+	<a href="{{ url }}" class="clearfix">
+
+		<h5 class="title"><a href= "{{ product.url | within: collection }}">{{ product.title | truncate: 30 }}</a></h5>
+		{% if settings.product_vendor %}
+		<span class="vendor">{{ product.vendor }}</span>
+		{% endif %}
+      
+		<span class="price">
+		{% if product.available %}
+			{% if product.compare_at_price_max > product.price %}
+			<del><span class="sale-price">{{ product.compare_at_price | money }}</span></del>
+			{% endif %}
+			{% if product.price_varies %}
+			<small><em>from</em></small>
+			{% endif %}
+			{{ product.price | money }}
+		{% else %}
+			{{ product.price | money }} <span class="sold-out">Sold Out</span>
+		{% endif %}
+		</span>
+
+    </a>
+  </div>
+  
+</div>

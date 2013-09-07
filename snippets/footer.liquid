@@ -1,12 +1,18 @@
+{% if settings.footer_widgets_on %}
+	<!-- Widgets -->
+		{% include 'footer-widgets' %}
+	<!-- End Widgets -->
+{% endif %}
+
 <footer class="row">
 	<div class="large-12 columns">
 		<hr>
 		<div class="row">
 			<div class="large-6 columns">
-				<p>&copy; Copyright {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}</p>
+				<p><a href="https://github.com/Cam/Shopify-Foundation-Theme">Foundation Shopify Theme Framework</a> Built by <a href="http://elkfox.com">Elkfox</a> / <a href="http://cam.vc">Cam</a></p>
 			</div>
 			<div class="large-6 columns">
-				<p align="right"><a href="https://github.com/Cam/Shopify-Foundation-Theme">Foundation Shopify Theme Framework</a> | Built by <a href="http://elkfox.com">Elkfox</a> / <a href="http://cam.vc">Cam</a></p>
+				<p align="right">&copy; Copyright {{ "now" | date: "%Y" }} {{ shop.name }}. {{ powered_by_link }}</p>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,14 @@
+<div class="large-12 columns" id="pagination">
+	<h1>{{ page.title }}</h1>
+
+	{{ page.content }}
+
+	<h3>Recent Posts</h3>
+
+		{% for article in blogs.articles %}
+			<ul>
+				<li>{{ article.title | link_to: article.url }}</li>
+			</ul>
+		{% endfor %}
+
+</div>

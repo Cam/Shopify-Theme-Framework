@@ -8,7 +8,7 @@
 		<div class="large-12 columns">
       
 		  <hgroup id="product-title">
-			<h2 itemprop="name">{{ product.title }}</h2>
+			<h1 itemprop="name">{{ product.title }}</h1>
 			{% assign product_vendor_handle = product.vendor | handle %}
 			{% comment %}
 			Do we have a collection that has the same name as our product vendor name?
@@ -74,49 +74,57 @@
 		<!-- #product-details -->
 		<div class="large-6 columns" id="product-detials">
       
-		  <div id="product-description" class="rte" itemprop="description">
-			{{ product.description }}
-		  </div>
+		<div id="product-description" class="rte" itemprop="description">
+			<p>{{ product.description }}</p>
+		</div>
 	  
-		  <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-			<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-			{% if product.available %}
-			<link itemprop="availability" href="http://schema.org/InStock" />
-			{% else %}
-			<link itemprop="availability" href="http://schema.org/OutOfStock" />
-			{% endif %}
-			<h5>
-			  {% if product.compare_at_price > product.price %}
-			  <span class="price on-sale" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
-			  {% else %}
-			  <span class="price" itemprop="price">{{ product.price | money }}</span>
-			  {% endif %}
-			</h5>
-		  </div>
+		<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+				<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+				{% if product.available %}
+				<link itemprop="availability" href="http://schema.org/InStock" />
+				{% else %}
+				<link itemprop="availability" href="http://schema.org/OutOfStock" />
+				{% endif %}
+				<h5>
+					{% if product.compare_at_price > product.price %}
+					<span class="price sale-price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
+					{% else %}
+					<span class="price" itemprop="price">{{ product.price | money }}</span>
+					{% endif %}
+				</h5>
+		</div>
 	  
-		  {% assign hide_default_title = false %}
-		  {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+		{% assign hide_default_title = false %}
+		{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
 			{% assign hide_default_title = true %}
-		  {% endif %}       
+		{% endif %}       
 
-		  <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
-		   <select id="product-select" name="id" class="hidden">
-		   {% for variant in product.variants %}
-			 <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-		   {% endfor %}
-		   </select>
-		  </div>        
+		<div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
+			<select id="product-select" name="id" class="hidden">
+			{% for variant in product.variants %}
+				<option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+			{% endfor %}
+			</select>
+		</div>        
 			 
-		  <!-- <div id="backorder" class="hidden">
+		<!-- <div id="backorder" class="hidden">
 			<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-		  </div> -->
+		</div> -->
 		
-		  <div id="product-add">
+		<div id="product-add">
 			<input class="button" type="submit" name="add" id="add" value="Add to cart">
-		  </div>
+		</div>
       
 		</div>
 		<!-- END #product-details -->
+		
+		{% if settings.related-products %}
+			<div class="large-12 columns">
+				<!-- Related Products -->
+					{% include 'related-products' %}
+				<!-- End Related Products -->
+			</div>
+		{% endif %}
 
   </form>
 
@@ -150,7 +158,7 @@ jQuery(function($) {
       
       // Whether the variant is in stock or not, we can update the price and compare at price.
       if ( variant.compare_at_price > variant.price ) {
-        $('#price').html('<span class="price on-sale">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
+        $('#price').html('<span class="price sale-price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") +'</span>'+'&nbsp;<s class="product-compare-price">'+Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}")+ '</s>');
       } else {
         $('#price').html('<span class="price">'+ Shopify.formatMoney(variant.price, "{{ shop.money_format }}") + '</span>' );
       }        

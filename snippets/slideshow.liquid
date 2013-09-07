@@ -6,31 +6,35 @@
 
 		<div class="slideshow-wrapper">
 		  <div class="preloader"></div>
-			<ul data-orbit data-options="bullets:false;" class="text-center">
+			<ul data-orbit data-options="bullets:false;{% if settings.slideshow_pause %}pause_on_hover:true;resume_on_mouseout:true;{% else %}pause_on_hover:false;{% endif %}" class="text-center">
 				<li>
-					<img src="http://placehold.it/1000x563">
+					{{ 'slideshow_image_1.png' | asset_url | img_tag: shop.name }}
 					<div class="orbit-caption">
 						<h2>Caption One.</h2> 
 						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 						<a class="button" href="#">Learn More</a>
 					</div>
 				</li>
+				{% if settings.slideshow_image_2_enable %}
 				<li>
-					<img src="http://placehold.it/1000x563">
+					{{ 'slideshow_image_2.png' | asset_url | img_tag: shop.name }}
 					<div class="orbit-caption">
 						<h2>Caption Two.</h2>
 						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 						<a class="button" href="#">Learn More</a>
 					</div>
 				</li>
+				{% endif %}
+				{% if settings.slideshow_image_3_enable %}
 				<li>
-					<img src="http://placehold.it/1000x563">
+					{{ 'slideshow_image_3.png' | asset_url | img_tag: shop.name }}
 					<div class="orbit-caption">
 						<h2>Caption Three.</h2>
 						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
 						<a class="button" href="#">Learn More</a>
 					</div>
 				</li>
+				{% endif %}
 			</ul>
 		  </div>
 		</div>

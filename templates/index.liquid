@@ -12,9 +12,11 @@ Example: the h2 element should have the same size and color in:
 
 {% assign page = pages.frontpage %}
 
-<!-- Slideshow -->
-	{% include 'slideshow' %}
-<!-- End Slideshow -->
+{% if settings.slideshow_enable %}
+	<!-- Slideshow -->
+		{% include 'slideshow' %}
+	<!-- End Slideshow -->
+{% endif %}
 
 {% comment %} --- frontpage text content goes here --- {% endcomment %}
 <div class="large-12 columns">
@@ -27,7 +29,7 @@ Example: the h2 element should have the same size and color in:
 
 {% comment %} --- frontpage product content goes here --- {% endcomment %}
 {% for product in collection.products %}
-  {% include 'product-grid-item' with 'three-per-row' %}
+	{% include 'product-loop' %}
 {% else %}
 	<div class="large-12 columns">
 		<p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>

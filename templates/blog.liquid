@@ -12,34 +12,39 @@
 	  {% for article in blog.articles %}
 	  <div class="blog-article{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
 		<h2 class="blog-article-title">
-		  <a href="{{ article.url }}">{{ article.title }}</a>
+			<a href="{{ article.url }}">{{ article.title }}</a>
 		</h2>
 		<h3 class="blog-article-date">
-		  <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+			<time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
 		</h3>
 		<div class="rte">
-		  {% if article.excerpt.size > 0 %}
-			{{ article.excerpt }}
-		  {% else %}
-			<p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-		  {% endif %}
+			{% if article.excerpt.size > 0 %}
+				{{ article.excerpt }}
+			{% else %}
+				<p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+			{% endif %}
 		</div>
-		<a class="blog-read-more" href="{{ article.url }}">Read more →</a>
-		<ul class="blog-article-meta">
-		  {% if blog.comments_enabled? %}
-		  <li class="blog-article-meta-comments">
-			<a href="{{ article.url }}#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}</a>
-		  </li>
-		  {% endif %}
-		  {% if article.tags.size > 0 %}
-			<!--<span>Filed under</span>-->
-			{% for tag in article.tags %}
-			<li class="tag">
-				<a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}{% endunless %}
-			</li>
-			{% endfor %}
-		  {% endif %}
-		</ul>
+		<div class="row">
+			<div class="large-3 columns">
+				<ul class="blog-article-meta">
+				  {% if blog.comments_enabled? %}
+				  <li class="blog-article-meta-comments">
+					<a href="{{ article.url }}#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}</a>
+				  </li>
+				  {% endif %}
+				  {% if article.tags.size > 0 %}
+					{% for tag in article.tags %}
+						<li class="tag">
+							<a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}{% endunless %}
+						</li>
+					{% endfor %}
+				  {% endif %}
+				</ul>
+			</div>
+			<div class="large-9 columns read-more">
+				<a class="button small" href="{{ article.url }}">Read More →</a>
+			</div>
+		</div>
 	  </div>
 	  {% endfor %}
 

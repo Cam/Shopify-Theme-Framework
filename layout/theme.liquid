@@ -25,6 +25,7 @@
 
 	{{ 'normalize.css' | asset_url | stylesheet_tag }}
 	{{ 'style.css' | asset_url | stylesheet_tag }}
+	{{ 'foundation-icons.css' | asset_url | stylesheet_tag }}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
 
 	{% if template contains 'customers' %}
@@ -55,10 +56,12 @@
 
   	</main><br>
   	<!-- End Include Main Content -->
-  
-	<!-- Include Bottom Navigation -->
-		{% include 'bottom-navigation' %}
-	<!-- End Include Bottom Navigation -->
+
+	{% if settings.bottom_menu_on %}  
+		<!-- Include Bottom Navigation -->
+			{% include 'bottom-navigation' %}
+		<!-- End Include Bottom Navigation -->
+	{% endif %}
  
   	<!-- Include Footer -->
 		{% include 'footer' %}

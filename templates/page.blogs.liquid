@@ -1,0 +1,29 @@
+<div class="large-12 columns" id="pagination">
+	<h1>{{ page.title }}</h1>
+
+	{{ page.content }}
+
+	{% for article in blogs.news.articles limit: 10 %}
+		<a href="{{ article.url }}"><h2>{{ article.title }}</h2></a>
+		<span>{{ article.created_at | date: "%d.%m.%Y" }}</span>
+		<div class="rte">
+			{% if article.excerpt.size > 0 %}
+				{{ article.excerpt }}
+			{% else %}
+				<p>{{ article.content | strip_html | truncatewords: 60 }} <a class="blog-read-more" href="{{ article.url }}">Read more →</a></p>
+			{% endif %}
+		</div>
+		<ul class="blog-article-meta">
+		  {% if article.tags.size > 0 %}
+			{% for tag in article.tags %}
+				<li class="tag">
+					<a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}{% endunless %}
+				</li>
+			{% endfor %}
+		  {% endif %}
+		</ul>
+	{% endfor %}
+
+</div>
+
+

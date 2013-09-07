@@ -1,6 +1,42 @@
-/* Why the hell do lists still put their style outside the div? */
-ul {
-	list-style-position: inside;
+/* Cam's Foundation Extras */
+	/* Why the hell do lists still put their style outside the div? */
+	ul {
+		list-style-position: inside;
+	}
+	/* Some things need aligning */
+	.align-right {
+		text-align: right;
+	}
+	
+	/* Product Loop - Change the breakpoint of product grids to suit */
+	@media only screen and (min-width: 620px) {
+		.product-preview.large-4 {
+			position: relative;
+			width: 33.33333%;
+			}
+	}
+
+/* Foundation Icon Fonts */
+	@font-face {
+		font-family: "foundation-icons";
+		src: url( {{'foundation-icons.eot' | asset_url }});
+		src: url( {{'foundation-icons.eot?#iefix' | asset_url }}) format("embedded-opentype"),
+		   url( {{'foundation-icons.woff' | asset_url }}) format("woff"),
+		   url( {{'foundation-icons.ttf' | asset_url }}) format("truetype"),
+		   url( {{'foundation-icons.svg#fontcustom' | asset_url }}) format("svg");
+	}
+	.white {
+		color: white !important;
+	}
+
+/* Contact Form */
+textarea {
+	min-height: 100px;
+}
+
+/* Product Preview Loop Fixes */
+.product-preview {
+/*	max-width: 480px; */
 }
 
 /* Set the Search in the header to sit together nicely on wide screens */
@@ -15,10 +51,46 @@ ul {
 
 /* Below here are CSS elements that are just here for fun c/o Cam Gould */
 
+/* On Sale Feature */
+.sale-price {
+	color: rgba(255, 71, 65, 1.000);
+	font-weight: 800;
+}
+.sale-tag {
+	position: absolute;
+	top: 0;
+	left: 15px;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 50px 50px 0 0;
+	border-color: rgba(255, 71, 65, 1.000) transparent transparent transparent;
+}
+.sale-tag:after {
+	content: "Sale";
+	position: absolute;
+	top: -40px;
+	left: 2px;
+	color: rgba(255, 255, 255, 1.000);
+	font-size: 0.9em;
+	font-weight: 800;
+	transform: rotate(-45deg);
+	/* Safari */ -webkit-transform: rotate(-45deg);
+	/* Firefox */ -moz-transform: rotate(-45deg);
+	/* IE */ -ms-transform: rotate(-45deg);
+	/* Opera */ -o-transform: rotate(-45deg);
+	/* Internet Explorer */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3.5);
+}
+
+/* Blog Read More Link */
+.read-more {
+	text-align: right;
+}
+
 /* Cam's Custom Tiny Tags */
 .tag {
 	padding: 0 9px 0 8px;
-	background: #2ba6cb;
+	background: rgba(43, 166, 203, 1.000);
 	text-decoration: none;
 	-moz-border-radius-bottomright: 2px;
 	-webkit-border-bottom-right-radius: 2px;
@@ -35,7 +107,7 @@ ul {
 	list-style-type: none;
 }
 .tag a {
-	color: #FFF;
+	color: rgba(255, 255, 255, 1.000);
 }
 .tag:before {
 	content: "";
@@ -45,7 +117,7 @@ ul {
 	left: -10px;
 	width: 0;
 	height: 1px;
-	border-color: transparent #2ba6cb transparent transparent;
+	border-color: transparent rgba(43, 166, 203, 1.000) transparent transparent;
 	border-style: solid;
 	border-width: 10px 10px 10px 0;
 	-moz-border-radius-topleft: 2px;
@@ -64,5 +136,5 @@ ul {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	background: #fff;
+	background: rgba(255, 255, 255, 1.000);
 }

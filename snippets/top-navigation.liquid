@@ -2,7 +2,7 @@
 	<nav class="top-bar" style="">
 			<ul class="title-area">
 				<li class="name">
-					<h1><a href="/"><i class="icon-home"></i>{{ shop.name }}</a></h1>
+					<h1><a href="/"><i class="fi-home white"></i> {{ shop.name }}</a></h1>
 				</li>
 				<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 			</ul>
@@ -14,14 +14,15 @@
 				{% endfor %}
 			</ul>
 			<ul id="" class="right">
+				<li class="divider"></li>
 				<li>
-					<a href="/cart"><i class="icon-shopping-cart"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+					<a href="/cart"><i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
 				</li>
 				<li class="divider"></li>
 				<!-- You can use the next li to add a checkout button if you like --> 
 				<!-- {% if cart.item_count > 0 %}
 				<li class="has-form">
-					<a class="small button" href="/checkout"><i class="icon-credit-card"></i> Check Out</a>
+					<a class="small button" href="/checkout"><i class="fi-credit-card white"></i> Check Out</a>
 				</li>
 				{% endif %} -->
 				<li class="has-form search-textarea">

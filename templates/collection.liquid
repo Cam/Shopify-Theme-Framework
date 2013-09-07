@@ -4,7 +4,7 @@ Important notes about pagination:
 - Never paginate by more than 50.
 {% endcomment %}
 
-{% paginate collection.products by 8 %}
+{% paginate collection.products by settings.pagination_limit %}
 
 {% comment %}
 Re-use the 'rte' class wherever you output content that was added by a merchant using
@@ -62,18 +62,36 @@ Example: the h2 element should have the same size and color in:
 	</div>
 	{% endif %}
 
-	<div class="row">
+
 	{% for product in collection.products %}
-	  {% include 'product-grid-item' with 'three-per-row' %}
+	  {% include 'product-loop' %}
 	{% else %}
 	<p>There are no products in this view.</p>
 	{% endfor %}
-	</div>
 
+	
 	{% if paginate.pages > 1 %}
-	<div id="pagination">
-	  {{ paginate | default_pagination }}
-	</div>
+		<div class="pagination-centered">
+			<ul class="pagination">
+				<li class="arrow">
+					{% if paginate.previous %}
+						{{ paginate.previous.title | link_to: paginate.previous.url }}
+					{% endif %}
+				</li>
+				{% for part in paginate.parts %}
+					{% if part.is_link %}
+						<li>{{ part.title | link_to: part.url }}</li>
+					{% else %}
+						<li class="current"><a href>{{ part.title }}</a></li>
+					{% endif %}
+				{% endfor %}
+				<li class="arrow">
+					{% if paginate.next %}
+						{{ paginate.next.title | link_to: paginate.next.url }}
+					{% endif %}
+				</li>
+			</ul>
+		</div>
 	{% endif %}
 	
 </div>

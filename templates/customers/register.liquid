@@ -1,0 +1,49 @@
+{% layout settings.customer_layout %}
+
+<div class="large-12 columns">
+	<div id="customer">
+  	  	<!-- Create Customer -->
+		<div id="create-customer">
+			<h1 class="title">Create Account</h1>
+
+			{% form 'create_customer' %}
+			  {{ form.errors | default_errors }}
+		  
+			<div class="row">
+
+				  <div class="large-6 columns" id="first_name" class="clearfix large_form">
+					<label for="first_name" class="login">First Name</label>
+					<input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" />
+				  </div>
+
+				  <div class="large-6 columns" id="last_name" class="clearfix large_form">
+					<label for="last_name" class="login">Last Name</label>
+					<input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" />
+				  </div>
+
+				  <div class="large-6 columns" id="email" class="clearfix large_form">
+					<label for="email" class="login">Email Address</label>
+					<input type="email" value="" name="customer[email]" id="email" class="large" size="30" />
+				  </div>
+
+				  <div class="large-6 columns" id="password" class="clearfix large_form">
+					<label for="password" class="login">Password</label>
+					<input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
+				  </div>
+			  
+			</div>
+
+			<div>
+				<input class="button" type="submit" value="Create" />
+			</div>
+			<div>
+				<p>Already have an account? {{ 'Login' | customer_login_link }}
+				<br />
+				<a href="{{ shop.url }}">Return to Store</a></p>
+			</div>
+
+			{% endform %}
+	  </div>
+	  <!-- /#create-customer -->
+  </div>
+</div>

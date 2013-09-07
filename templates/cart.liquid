@@ -8,11 +8,11 @@
 
 
 		<div class="row">
-			<div class="small-9 columns">
+			<div class="small-8 columns">
 				<h5>Item</h5>
 			</div>
-			<div class="small-3 columns">
-				<h5>Price</h5>
+			<div class="small-4 columns">
+				<h5>Subtotal</h5>
 			</div>
 		</div>
 		<hr>
@@ -29,7 +29,7 @@
 		  {% endif %}
 
 		<div class="row">
-			<div class="small-9 columns">
+			<div class="small-8 columns">
 				<div class="row">
 					<div class="large-3 columns">
 							<a href="{{ item.product.url | within: collections.all }}">  
@@ -47,6 +47,7 @@
 									   - {{ item.variant.title }}
 									  {% endunless %}
 									{% endif %}
+									<span> - {{ item.price | money }}<span>
 									</a>
 								  </h3>
 								  {% comment %}
@@ -68,10 +69,7 @@
 								  </p>
 								  {% endif %}
 								  <div class="row">
-								  		<div class="large-3 columns">
-											<h5>{{ item.price | money }}</h5>
-										</div>
-										<div class="large-9 columns">
+										<div class="large-12 columns">
 											<h5>{{ item.vendor }}</h3>
 										</div>
 								  </div>
@@ -80,7 +78,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="small-3 columns">
+			<div class="small-4 columns">
 				<div class="row">
 					<div class="large-6 columns">
 						<input type="number" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
@@ -106,20 +104,13 @@
 	  {% endcomment %}
   
 		<div class="row">
-			{% comment %}
-			For the special instructions to be submitted with order,
-			they need to use a name attribute set to 'note'. That's case-sensitive.
-			{% endcomment %}
 			<div class="large-6 columns">
-				<p>Comments</p>
-				<textarea name="note">{{ cart.note }}</textarea>
-			</div>
-			<div class="large-6 columns">
-				<h4>Subtotal <em>{{ cart.total_price | money }}</em></h4>
 				<a href="{{ collection_url }}">Continue shopping</a>
-				<span class="or">or</span>
+			</div>
+			<div class="large-6 columns align-right">
+				<h4>Subtotal <em>{{ cart.total_price | money }}</em></h4>
 				<input class="button small" type="submit" name="update" value="Update cart" />
-				<span class="or">or</span>
+				<span class="or">&nbsp;</span>
 				<input class="button small" type="submit" name="checkout" value="Check out" />    
 				{% comment %}Paypal and Google checkout buttons{% endcomment %}
 				{% if additional_checkout_buttons %}
@@ -127,6 +118,17 @@
 				  {{ content_for_additional_checkout_buttons }}
 				</p>
 				{% endif %}    
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="large-6 columns">
+				{% comment %}
+				For the special instructions to be submitted with order,
+				they need to use a name attribute set to 'note'. That's case-sensitive.
+				{% endcomment %}
+				<p>Comments</p>
+				<textarea name="note">{{ cart.note }}</textarea>
 			</div>
 		</div>
 
