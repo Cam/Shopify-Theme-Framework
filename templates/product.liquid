@@ -20,7 +20,6 @@
 			{% else %}
 			  {% assign vendor_url = product.vendor | url_for_vendor %}
 			{% endif %}
-			<h4 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h4>
 		  </hgroup>
 		  
 		</div>
@@ -40,28 +39,30 @@
 		<div class="large-6 columns" id="product-photos">
   
 		  {% if product.images.size == 0 %}
-  
+
 			<div id="zoom">
-			  <img src="{{ product.featured_image | product_img_url: 'master' }}" alt="" />
+				<img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" />
 			</div>
 	
 		  {% else %}
 	
 			<div id="zoom">
-			  <a class="gallery" href="{{ product.featured_image.src | product_img_url: 'original' }}" rel="gallery">
 				<img src="{{ product.featured_image.src | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" />
-			  </a>
 			</div>
 
 			{% if product.images.size > 1 %}
 			<br />
-			<ul class="clearing-thumbs" data-clearing>
+			<ul class="clearing-thumbs" data-clearing style="position:relative;">
 			  {% for image in product.images offset:1 %}
 			  <li>
-				<a class="gallery" href="{{ image.src | product_img_url: 'large' }}" rel="gallery">
+				<a href="#" data-reveal-id="myModal">
 				  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
 				</a>
 			  </li>
+			  <div id="myModal" class="reveal-modal expand" style="position:fixed;">
+			  		<img src="{{ image.src | product_img_url: 'master' }}" alt="{{ image.alt | escape }}" />
+			  		<a class="close-reveal-modal">&#215;</a>
+			  </div>
 			  {% endfor %}
 			</ul>
 			{% endif %}
@@ -87,12 +88,14 @@
 				{% endif %}
 				<h5>
 					{% if product.compare_at_price > product.price %}
-					<span class="price sale-price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="product-compare-price">{{ product.compare_at_price_max | money }}</s>
+					<span class="price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="sale-price">{{ product.compare_at_price_max | money }}</s>
 					{% else %}
 					<span class="price" itemprop="price">{{ product.price | money }}</span>
 					{% endif %}
 				</h5>
 		</div>
+		
+		<h5 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h5>
 	  
 		{% assign hide_default_title = false %}
 		{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}

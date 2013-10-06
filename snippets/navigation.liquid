@@ -1,0 +1,39 @@
+<header class="row" role="banner">
+
+  <div class="large-12 columns">
+
+		<!-- Top Bar -->
+		<nav class="top-bar">
+			<ul class="title-area">
+				<li class="name">
+					<h1><a href="/"><i class="fi-home"></i>{{ shop.name }}</a></h1>
+				</li>
+				<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+			</ul>
+
+			<section class="top-bar-section">
+				<ul class="right">
+					{% for link in linklists.main-menu.links %}
+						<li>{{ link.title | link_to: link.url }}</li>
+					{% endfor %}
+					<li class="divider"></li>
+					<li><a href="/cart"><i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a></li>
+					{% if cart.item_count > 0 %}
+					<li class="divider"></li>
+					<li class="has-form"><a class="button" href="/checkout"><i class="fi-credit-card"></i> Check Out</a></li>
+					{% endif %}
+					<li class="search">
+						<form action="/search" method="get" class="search-form" role="search"><input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
+					</li>
+					<li class="has-button">
+						<input  class="small button" type="submit" id="search-submit" value="Search" /></form>
+					</li>
+
+				</ul>
+			</section>
+
+		</nav>
+		<!-- End Top Bar -->
+
+	</div>
+</header>

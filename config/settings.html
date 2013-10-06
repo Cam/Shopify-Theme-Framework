@@ -8,15 +8,15 @@
   <h3>Logo Options</h3>
   <table>
     <tr>
-      <td><label for="use_logo">Use Custom Logo?</label></td>
+      <th><label for="use_logo">Use Custom Logo?</label></th>
       <td><input type="checkbox" id="use_logo" name="use_logo" /></td>
     </tr>
     <tr>
-      <td><label for="logo_image">Custom Logo</label></td>
+      <th><label for="logo_image">Custom Logo</label></th>
       <td><input type="file" name="logo.png" id="logo_image" data-max-width="940" data-max-height="300" /></td>
     </tr>
     <tr>
-      <td><label for="site_title">Include Site Title as 'Heading 1'</label></td>
+      <th><label for="site_title">Include Site Title as 'Heading 1'</label></th>
       <td><input type="checkbox" id="site_title" name="site_title" /></td>
     </tr>
     <tr>
@@ -39,31 +39,31 @@
 	
 	<table>
 		<tr>
-			<td><label for="slideshow_enable">Enable Slideshow on Home Page?</label></td>
+			<th><label for="slideshow_enable">Enable Slideshow on Home Page?</label></th>
 			<td><input type="checkbox" id="slideshow_enable" name="slideshow_enable" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_pause">Pause Slideshow On Hover?</label></td>
+			<th><label for="slideshow_pause">Pause Slideshow On Hover?</label></th>
 			<td><input type="checkbox" id="slideshow_pause" name="slideshow_pause" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_image_1">Slideshow Image 1</label></td>
+			<th><label for="slideshow_image_1">Slideshow Image 1</label></th>
 			<td><input type="file" name="slideshow_image_1.png" id="slideshow_image_1" data-max-width="1000" data-max-height="563" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_image_2_enable">Use a second slideshow image?</label></td>
+			<th><label for="slideshow_image_2_enable">Use a second slideshow image?</label></th>
 			<td><input type="checkbox" id="use_logo" name="slideshow_image_2_enable" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_image_2">Slideshow Image 2</label></td>
+			<th><label for="slideshow_image_2">Slideshow Image 2</label></th>
 			<td><input type="file" name="slideshow_image_2.png" id="slideshow_image_2" data-max-width="1000" data-max-height="563" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_image_3_enable">Use a third slideshow image?</label></td>
+			<th><label for="slideshow_image_3_enable">Use a third slideshow image?</label></th>
 			<td><input type="checkbox" id="use_logo" name="slideshow_image_3_enable" /></td>
 		</tr>
 		<tr>
-			<td><label for="slideshow_image_3">Slideshow Image 3</label></td>
+			<th><label for="slideshow_image_3">Slideshow Image 3</label></th>
 			<td><input type="file" name="slideshow_image_3.png" id="slideshow_image_3" data-max-width="1000" data-max-height="563" /></td>
 		</tr>
 	</table>
@@ -76,7 +76,7 @@
 
   	<table>
 		<tr>
-			<td><label for="products_per_row">Products Per Row</label></td>
+			<th><label for="products_per_row">Products Per Row</label></th>
 			<td>
 				<select name="products_per_row" id="products_per_row">
 			        <option value="2">2</option>
@@ -89,7 +89,7 @@
 
   	<table>
 		<tr>
-		  <td><label for="pagination_limit">Products Per Page</label></td>
+		  <th><label for="pagination_limit">Products Per Page</label></th>
 		  <td>
 			<select name="pagination_limit" id="pagination_limit">
 			  <option value="48">48</option>
@@ -123,7 +123,7 @@
 
   	<table>
 		<tr>
-			<td><label for="related-products">Show Related Products?</label></td>
+			<th><label for="related-products">Show Related Products?</label></th>
 			<td><input type="checkbox" id="related-products" name="related-products" /></td>
 		</tr>
 	</table>
@@ -136,7 +136,7 @@
   
   	<table>
 		<tr>
-		  <td><label for="footer_widgets_on">Enable Footer Widgets</label></td>
+		  <th><label for="footer_widgets_on">Enable Footer Widgets</label></th>
 		  <td><input type="checkbox" id="footer_widgets_on" name="footer_widgets_on" /></td>
 		</tr>
 	</table>
@@ -144,11 +144,11 @@
 	<h3>Mailchimp Form</h3>
 	<table>
 	<tr>
-		<td><label for="use_logo">Include Mailchimp Form</label></td>
+		<th><label for="use_logo">Include Mailchimp Form</label></th>
 		<td><input type="checkbox" id="use_logo" name="use_logo" /></td>
 	</tr>
 	<tr>
-		<td><label for="logo_image">Mailchimp Form ID</label></td>
+		<th><label for="logo_image">Mailchimp Form ID</label></th>
 		<td><input type="text" id="mailchimp_form_id" name="my_text" class="text" value="Form ID" /></td>
 	</tr>
 	<tr>
@@ -169,9 +169,109 @@
   
   	<table>
 		<tr>
-		  <td><label for="bottom_menu_on">Enable Bottom Menu</label></td>
+		  <th><label for="bottom_menu_on">Enable Bottom Menu</label></th>
 		  <td><input type="checkbox" id="bottom_menu_on" name="bottom_menu_on" /></td>
 		</tr>
 	</table>
 	
+</fieldset>
+
+
+<fieldset>
+  <legend>Browser, iOS &amp; Android Icons</legend>
+ 
+  <h3>Please only change this section if you know what you are doing</h3>
+  <table>
+    <tr>
+      <th><label for="favicon">Favicon</label></th>
+      <td><input type="file" name="favicon.ico" id="favicon" data-max-width="64" data-max-height="64" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 64x64 pixels 'favicon.ico' file</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-precomposed">Generic Touch Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-precomposed.png" id="apple-touch-icon-precomposed" data-max-width="57" data-max-height="57" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 57x57 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-57x57-precomposed">57x57 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-57x57-precomposed.png" id="apple-touch-icon-57x57-precomposed" data-max-width="57" data-max-height="57" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 57x57 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-60x60-precomposed">60x60 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-60x60-precomposed.png" id="apple-touch-icon-60x60-precomposed" data-max-width="60" data-max-height="60" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 60x60 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-72x72-precomposed">72x72 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-72x72-precomposed.png" id="apple-touch-icon-72x72-precomposed" data-max-width="72" data-max-height="72" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 72x72 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-76x76-precomposed">76x76 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-76x76-precomposed.png" id="apple-touch-icon-76x76-precomposed" data-max-width="76" data-max-height="76" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 76x76 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-114x114-precomposed">114x114 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-114x114-precomposed.png" id="apple-touch-icon-114x114-precomposed" data-max-width="114" data-max-height="114" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 114x114 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-120x120-precomposed">120x120 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-120x120-precomposed.png" id="apple-touch-icon-120x120-precomposed" data-max-width="120" data-max-height="120" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 120x120 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-144x144-precomposed">144x144 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-144x144-precomposed.png" id="apple-touch-icon-144x144-precomposed" data-max-width="144" data-max-height="144" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 144x144 pixels</small>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="apple-touch-icon-152x152-precomposed">152x152 Icon</label></th>
+      <td><input type="file" name="apple-touch-icon-152x152-precomposed.png" id="apple-touch-icon-152x152-precomposed" data-max-width="152" data-max-height="152" /></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+      	<small>Must be 152x152 pixels</small>
+      </td>
+    </tr>
+  </table>
+  
 </fieldset>

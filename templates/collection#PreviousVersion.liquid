@@ -63,13 +63,11 @@ Example: the h2 element should have the same size and color in:
 	{% endif %}
 
 	<div class="row">
-		{% for product in collection.products %}
-	  		{% include 'product-loop' %}
-		{% else %}
-			<div class="large-12 columns">
-				<p>There are no products in this view.</p>
-			</div>
-		{% endfor %}
+	{% for product in collection.products %}
+	  {% include 'product-loop' %}
+	{% else %}
+	<p>There are no products in this view.</p>
+	{% endfor %}
 	</div>
 
 	
