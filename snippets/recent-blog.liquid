@@ -1,51 +1,53 @@
 <div class="large-12 columns">
-	
-	<h2>From The Blog</h2>
+  
+    <h2>From The Blog</h2>
 
-	<!-- Show the most recent blog article/s -->
-	
-		{% for article in blogs.news.articles %}
-			{% if forloop.first == true %}
-				<div class="row">
-					<ul class="recent-blog">
-						{% for article in blogs.news.articles limit: 5 %}
-						<li>
-							<div class="large-4 columns article">
-							
-									{% assign src = false %} 
-									{% if article.content contains "<img" %}
+    <!-- Show the most recent blog article/s -->
+    
+    {% for article in blogs.news.articles %}
+        {% if forloop.first == true %}
+            
+                <ul class="recent-blog">
+                    
+                    <!-- Set how many items you want to show below -->
+                    {% for article in blogs.news.articles limit: 5 %}
+                  
+                    <li>
+                        <div class="row">
+                            {% assign src = false %}
+                            {% if article.content contains "<img" %}
+                                <div class="large-4 columns article">
 
-										{% assign src = article.content | split: 'src="' %}
-										{% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
+                                    {% assign src = article.content | split: 'src="' %}
+                                    {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
 
-										{% comment %}
-											Let's assume you always add images to the blog as grande.
-										{% endcomment %}
+                                    {% comment %}
+                                        Let's assume you always add images to the blog as grande.
+                                    {% endcomment %}
 
-										{% if src %}
-											{% assign src = src | replace:'_grande','_large' %}
-										{% endif %}
+                                    {% if src %}
+                                        {% assign src = src | replace:'_grande','_large' %}
+                                    {% endif %}
 
-<a href="{{ article.url }}"><img src="{{ src }}" alt="article.title" /></a>
-
-									{% endif %}
-							
-							</div>		
-							<div class="large-8 columns article">
-							
-									<a href="{{ article.url }}">
-										<h3>{{ article.title }}</h3>
-									</a>
-									<b>{{ article.created_at | date: "%d/%m/%Y" }}</b>
-									<br />
-									<p>{{ article.content | strip_html | truncate: 160 }}</p>
-							
-							</div>								
-						</li>
-						{% endfor %}
-					</ul>			
-				</div>
-			{% endif %}
-		{% endfor %}
+                                    <a href="{{ article.url }}"><img src="{{ src }}" alt="article.title" /></a>
+                                
+                                </div>
+                            {% endif %}
+                            <div class="{% if article.content contains "<img" %}large-8{% else %}large-12{% endif %} columns article">
+                            
+                                <a href="{{ article.url }}">
+                                    <h3>{{ article.title }}</h3>
+                                </a>
+                                <b>{{ article.created_at | date: "%d/%m/%Y" }}</b>
+                                <br />
+                                <p>{{ article.content | strip_html | truncate: 160 }}</p>
+                          
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>			
+        {% endif %}
+    {% endfor %}
 
 </div>

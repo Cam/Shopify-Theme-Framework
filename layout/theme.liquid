@@ -56,15 +56,24 @@
 	<!-- Include Top Navigation -->
 		{% include 'header' %}
 	<!-- End Include Top Navigation -->
+ 
   
   	<!-- Include Main Content -->
-  	<main class="row" role="main">
+  	<main role="main">
 
-		{% if template == 'list-collections' %}
-		{% include 'collection-listing' %}
-		{% else %}
-		{{ content_for_layout }}
-		{% endif %}
+        <!-- Include Breadcrumbs -->
+            <div  class="row">
+                {% include 'breadcrumbs' %}
+            </div>
+		<!-- End Include Breadcrumbs -->
+      
+		<div  class="row">
+            {% if template == 'list-collections' %}
+            {% include 'collection-listing' %}
+            {% else %}
+            {{ content_for_layout }}
+            {% endif %}
+      	</div>
 
   	</main><br>
   	<!-- End Include Main Content -->
