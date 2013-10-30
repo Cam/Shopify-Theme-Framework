@@ -1,39 +1,87 @@
 <!-- Top Nav Bar -->
-	<nav class="top-bar" style="">
-			<ul class="title-area">
-				<li class="name">
-					<h1><a href="/"><i class="fi-home white"></i> {{ shop.name }}</a></h1>
-				</li>
-				<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-			</ul>
-		<section class="top-bar-section">
-			<ul id="" class="left">
-				{% for link in linklists.main-menu.links %}
-					<li class="divider"></li>
-					<li>{{ link.title | link_to: link.url }}</li>
-				{% endfor %}
-			</ul>
-			<ul id="" class="right">
-				<li class="divider"></li>
-				<li>
-					<a href="/cart"><i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
-				</li>
-				<li class="divider"></li>
-				<!-- You can use the next li to add a checkout button if you like --> 
-				<!-- {% if cart.item_count > 0 %}
-				<li class="has-form">
-					<a class="small button" href="/checkout"><i class="fi-credit-card white"></i> Check Out</a>
-				</li>
-				{% endif %} -->
-				<li class="has-form search-textarea">
-					<form action="/search" method="get" class="search-form" role="search">
-					<input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
-				</li>
-				<li class="has-form search-submit">
-					<input class="small button" type="submit" id="search-submit" value="Search" /></form>
-				</li>
-			</ul>
 
-	</section>
+<!--<div class="fixed sticky contain-to-grid"> - Cam: Must be a configurable setting
+Positioning the Bar: The top bar is built with a single nav element with a class of top-bar. It will take on full-browser width by default. To make the top bar stay fixed as you scroll, wrap it in div class="fixed". If you want your navigation to be set to your grid width, wrap it in div class="contain-to-grid". You may use fixed and contain-to-grid together in the wrapping div (div class="contain-to-grid fixed).
+-->
+
+	<nav class="top-bar" role="navigation" data-options="is_hover:false">
+      
+      	<!-- This is where the site title goes... remove " {{ shop.name }}" to disable it -->
+		<ul class="title-area">
+			<li class="name">
+				<h1><a href="/"><i class="fi-home white"></i> {{ shop.name }}</a></h1>
+			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+		</ul>
+      
+      	<section class="top-bar-section">
+		
+          	<!-- This is where the main menu links render-->
+            <ul class="left has-dropdown">
+              {% for link in linklists.main-menu.links %}
+              {% assign has_sub_menu = false %}
+              {% assign has_sub_categories = false %}
+              {% assign parent_link_active = false %}
+              {% assign child_list_handle = link.title | handle %}
+              {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+                {% assign has_sub_menu = true %}
+                {% for l in linklists[child_list_handle].links %}
+                  {% if page_title == l.title %}
+                    {% assign parent_link_active = true %}
+                  {% endif %}
+                {% endfor %}
+              {% elsif link.type == 'collection_link' and link.object.all_tags.size > 0 %}
+                {% assign has_sub_categories = true %}
+              {% endif %}
+              <li class="nav-item{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if link.active or parent_link_active %} active{% endif %}{% if has_sub_menu or has_sub_categories %} has-dropdown{% endif %}">
+                {{ link.title | link_to: link.url }}
+                {% if has_sub_menu or has_sub_categories %}
+                  <ul class="dropdown">
+                    {% if has_sub_menu %}
+                      {% for l in linklists[child_list_handle].links %}
+                      <li class="{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">
+                        <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ l.url }}">{{ l.title }}</a>
+                      </li>
+                      {% endfor %}
+                    {% elsif has_sub_categories %}
+                      {% for tag in link.object.all_tags %}
+                      <li class="{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if current_tags contains tag %} active{% endif %}">
+                        <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ link.url }}/{{ tag | handle }}">{{ tag }}</a>
+                      </li>
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+
+          	<!-- This is where the search and cart total live in the default setup -->
+            <ul class="right">
+                <li class="divider"></li>
+                <li>
+                    <a href="/cart"><i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+                </li>
+                <li class="divider"></li>
+                <!-- You can use the next li to add a checkout button if you like --> 
+                <!-- {% if cart.item_count > 0 %}
+                <li class="has-form">
+                    <a class="small button" href="/checkout"><i class="fi-credit-card white"></i> Check Out</a>
+                </li>
+                {% endif %} -->
+                <li class="has-form search-textarea">
+                    <form action="/search" method="get" class="search-form" role="search">
+                    <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
+                </li>
+                <li class="has-form search-submit">
+                    <input class="small button" type="submit" id="search-submit" value="Search" /></form>
+                </li>
+            </ul>
+
+        </section>
+
 	</nav>
+
+<!--</div>-->
+
 <!-- End Top Nav Bar -->

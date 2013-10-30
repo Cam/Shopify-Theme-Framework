@@ -1,0 +1,29 @@
+<!-- Start Breadcrumbs -->
+	<div class="small-12 columns">
+		<ul class="breadcrumbs">
+			<li>
+				<a href="/" class="homepage-link" title="Back to the frontpage">Home</a>
+			</li>
+			{% if template contains "product" %}
+				{% if collection %}
+					<li>{% if collection.handle %}
+							{% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+							{{ collection.title | link_to: url }}
+						{% elsif collection.all_products_count > 0 and collection.products.first.type == collection.title %}
+							{{ collection.title | link_to_type }}
+						{% elsif collection.all_products_count > 0 and collection.products.first.vendor == collection.title %}
+							{{ collection.title | link_to_vendor }}
+						{% endif %}
+					</li>
+				{% else %}
+					<li> {{ product.type | link_to_type }}
+				{% endif %}
+			{% elsif template == "article" %}</li>
+				<li>{{ blog.title | link_to: blog.url }}</li>
+			{% endif %}
+			<li class="current">
+				<a href="#">{{ page_title }}</a>
+			</li>
+		</ul>
+	</div>
+<!-- End Breadcrumbs -->

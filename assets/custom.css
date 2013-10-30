@@ -49,6 +49,11 @@ textarea {
 	}
 }
 
+/* Recent Blog Snippet */
+ul.recent-blog {
+	list-style-type: none;
+}
+
 /* Below here are CSS elements that are just here for fun c/o Cam Gould */
 
 /* On Sale Feature */
@@ -68,6 +73,7 @@ textarea {
 }
 .sale-tag:after {
 	content: "Sale";
+	line-height:100%;
 	position: absolute;
 	top: -40px;
 	left: 2px;

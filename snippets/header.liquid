@@ -13,26 +13,31 @@
 		</div>
 	{% endif %} -->
 
-	{% if settings.site_title %}
-
-		<div class="small-12 columns">
-			{% if settings.use_logo %}
-
-				<div class="left">
-					<!-- Logo -->
-					<a id="logo" href="/" role="banner">
-						{{ 'logo.png' | asset_url | img_tag: shop.name }}
-					</a>
-					<!-- End Logo -->
-				</div>
-
-			{% endif %}
-
+	<div class="small-12 columns">
+	
+		<!-- Logo -->
+		{% if settings.use_logo %}
+		
+			<div class="left">
+				<a id="logo" href="/" role="banner">
+					{{ 'logo.png' | asset_url | img_tag: shop.name }}
+				</a>
+			</div>
+			
+		{% endif %}
+		<!-- End Logo -->
+	
+		<!-- Site Title -->
+		
+		{% if settings.site_title %}
+		
 			<h1 id="site-title" role="banner">
 				<a href="/">{{ shop.name }}</a>
 			</h1>
-		</div>
-
-	{% endif %}
+			
+		{% endif %}
+		<!-- End Site Title -->
+		
+	</div>
 
 </header>
