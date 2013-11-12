@@ -8,3 +8,14 @@ This theme is built almost entirely from the Zurb Foundation framework, and Shop
 The template is intended as a rapid Shopify theme development framework for developers.
 
 Check out the demo at http://foundation-theme.myshopify.com
+
+
+=========================
+
+Copyright (C) 2013 Cam Gould http://camgould.com
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+Please see full license information at http://opensource.org/licenses/GPL-3.0
