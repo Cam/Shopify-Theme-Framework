@@ -1,0 +1,57 @@
+<div style="float:right;">
+	<a href="#" data-reveal-id="myModal{{ product.url | within: collection | replace: '/', '-' }}">
+        <i class="fi-magnifying-glass"></i>
+    </a>
+</div>
+
+<div id="myModal{{ product.url | within: collection | replace: '/', '-' }}" class="reveal-modal expand" style="position:fixed;">
+  	<form action="/cart/add" method="post" enctype="multipart/form-data" style="margin:0;">
+      	<div class="row">
+            <div class="large-6 columns">            
+                <img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.title | escape  }}" />
+            </div>
+            <div class="large-6 columns">
+                <h1 itemprop="name">{{ product.title }}</h1>
+                <div id="product-description" class="rte" itemprop="description">
+                    <p>{{ product.description | strip_html | truncate: 180 | replace: 'Description', '' }}</p>
+                </div>
+                
+                <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+                        {% if product.available %}
+                        <link itemprop="availability" href="http://schema.org/InStock" />
+                        {% else %}
+                        <link itemprop="availability" href="http://schema.org/OutOfStock" />
+                        {% endif %}
+                        <h5>
+                            {% if product.compare_at_price > product.price %}
+                            <span class="price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="sale-price">{{ product.compare_at_price_max | money }}</s>
+                            {% else %}
+                            <span class="price" itemprop="price">{{ product.price | money }}</span>
+                            {% endif %}
+                        </h5>
+                </div>
+                
+                {% comment %} Uncomment the next line if you want brands in the 'quick view' popup {% endcomment %}
+                <!-- <h5 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h5> -->
+                
+                {% assign hide_default_title = false %}
+                {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+                    {% assign hide_default_title = true %}
+                {% endif %}       
+                
+                <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
+                    <select id="product-select" name="id">
+                    {% for variant in product.variants %}
+                        <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                    {% endfor %}
+                    </select>
+                </div>  
+        
+                <input class="button" type="submit" name="add" id="add" value="Add to cart">
+    
+            </div>
+      	</div>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>

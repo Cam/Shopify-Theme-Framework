@@ -41,13 +41,13 @@
 		  {% if product.images.size == 0 %}
 
 			<div id="zoom">
-				<img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" />
+				<img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" id="product_feature_image" />
 			</div>
 	
 		  {% else %}
 	
 			<div id="zoom">
-				<img src="{{ product.featured_image.src | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" />
+				<img src="{{ product.featured_image.src | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" id="product_feature_image" />
 			</div>
 
 			{% if product.images.size > 1 %}
@@ -55,11 +55,11 @@
 			<ul class="clearing-thumbs" data-clearing style="position:relative;">
 			  {% for image in product.images offset:1 %}
 			  <li>
-				<a href="#" data-reveal-id="myModal">
+				<a href="#" data-reveal-id="myModal{{ image.id }}">
 				  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
 				</a>
 			  </li>
-			  <div id="myModal" class="reveal-modal expand" style="position:fixed;">
+			  <div id="myModal{{ image.id }}" class="reveal-modal expand" style="position:fixed;">
 			  		<img src="{{ image.src | product_img_url: 'master' }}" alt="{{ image.alt | escape }}" />
 			  		<a class="close-reveal-modal">&#215;</a>
 			  </div>
@@ -75,51 +75,54 @@
 		<!-- #product-details -->
 		<div class="large-6 columns" id="product-detials">
       
-		<div id="product-description" class="rte" itemprop="description">
-			<p>{{ product.description }}</p>
-		</div>
-	  
-		<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-				<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
-				{% if product.available %}
-				<link itemprop="availability" href="http://schema.org/InStock" />
-				{% else %}
-				<link itemprop="availability" href="http://schema.org/OutOfStock" />
-				{% endif %}
-				<h5>
-					{% if product.compare_at_price > product.price %}
-					<span class="price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="sale-price">{{ product.compare_at_price_max | money }}</s>
-					{% else %}
-					<span class="price" itemprop="price">{{ product.price | money }}</span>
-					{% endif %}
-				</h5>
-		</div>
-		
-		<h5 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h5>
-	  
-		{% assign hide_default_title = false %}
-		{% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-			{% assign hide_default_title = true %}
-		{% endif %}       
-
-		<div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
-			<select id="product-select" name="id" class="hidden">
-			{% for variant in product.variants %}
-				<option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-			{% endfor %}
-			</select>
-		</div>        
-			 
-		<!-- <div id="backorder" class="hidden">
-			<p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
-		</div> -->
-		
-		<div id="product-add">
-			<input class="button" type="submit" name="add" id="add" value="Add to cart">
-		</div>
+            <div id="product-description" class="rte" itemprop="description">
+                <p>{{ product.description }}</p>
+            </div>
+          
+            <div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+                    {% if product.available %}
+                    <link itemprop="availability" href="http://schema.org/InStock" />
+                    {% else %}
+                    <link itemprop="availability" href="http://schema.org/OutOfStock" />
+                    {% endif %}
+                    <h5>
+                        {% if product.compare_at_price > product.price %}
+                        <span class="price" itemprop="price">{{ product.price | money }}</span>&nbsp;<s class="sale-price">{{ product.compare_at_price_max | money }}</s>
+                        {% else %}
+                        <span class="price" itemprop="price">{{ product.price | money }}</span>
+                        {% endif %}
+                    </h5>
+            </div>
+            
+            <h5 itemprop="brand">{{ product.vendor | link_to: vendor_url }}</h5>
+          
+            {% assign hide_default_title = false %}
+            {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
+                {% assign hide_default_title = true %}
+            {% endif %}       
+    
+            <div id="product-variants" class="{% if hide_default_title %} hidden{% endif %}">
+                <select id="product-select" name="id" class="hidden">
+                {% for variant in product.variants %}
+                    <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+                {% endfor %}
+                </select>
+            </div>        
+                 
+            <!-- <div id="backorder" class="hidden">
+                <p>{{ '%s is back-ordered. We will ship it separately in 10 to 15 days.' | replace: '%s', '<span id="selected-variant"></span>' }}</p>
+            </div> -->
+            
+            <div id="product-add">
+                <input class="button" type="submit" name="add" id="add" value="Add to cart">
+            </div>
       
 		</div>
 		<!-- END #product-details -->
+    
+    	{% include 'share' %}
+    
 		
 		{% if settings.related-products %}
 			<div class="large-12 columns">

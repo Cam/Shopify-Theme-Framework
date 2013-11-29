@@ -19,7 +19,7 @@ Example: the h2 element should have the same size and color in:
 {% endif %}
 
 {% comment %} --- frontpage text content goes here --- {% endcomment %}
-<div class="large-12 columns">
+<div class="large-12 columns shopify-welcome-message">
 	<div class="panel">
 		{{ page.content }}
 	</div>
@@ -31,7 +31,7 @@ Example: the h2 element should have the same size and color in:
 {% for product in collection.products %}
 	{% include 'product-loop' %}
 {% else %}
-	<div class="large-12 columns">
+	<div class="large-12 columns shopify-no-products-message">
 		<p>You have no products in your Frontpage collection. <a href="http://www.shopify.com/admin/custom_collections">Add some.</a></p>
 	</div>
 {% endfor %}

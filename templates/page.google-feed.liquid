@@ -1,0 +1,54 @@
+{% comment %}
+
+	Instructions:
+	- Create a blank page called 'Google Base Product Feed'and save it
+	- Open that page for editing and select 'page.google-feed' from the page template selector
+	- Add a brief site description to the meta-shop-description snippet
+	- The feed url should now be available at http://www.yoursite.com/pages/google-base-product-feed
+	- validate your field at http://validator.w3.org/feed/
+	- when ready, submit your feed at http://base.google.com
+
+	Notes:
+	- If you have to include VAT, either put "(including VAT)" or "(excluding VAT)" in the price field of your products (in Shopify, not the feed) and make the appropriate tax setup in your Google Base Settings
+	- for more info see http://ecommerce.shopify.com/c/ecommerce-design/t/feedify-your-shop-for-free-using-page-templates-29008
+	- for a quick tutorial see http://ecommerce.shopify.com/c/ecommerce-design/t/feedify-your-shop-for-free-using-page-templates-29008/#comment-29549
+	- Google Product feed specifications: https://support.google.com/merchants/answer/188494?hl=en-GB
+
+	Credits:
+	- Michael Larkin: http://www.pixallent.com
+	- Caroline Schnapp: http://www.11heavens.com
+ 	- Jamie: http://www.charlestoncreative.com
+
+{% endcomment %}
+
+
+{% layout none %}<?xml version="1.0" encoding="UTF-8" ?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+    <channel>
+        <title>{{shop.name | escape }} Products</title>
+        <description>{% include 'meta-shop-descripion' %}</description>
+        <link>{{shop.url}}</link>
+        {% paginate collections.all-products.products by 1000 %}
+            {% for product in collections.all-products.products %}
+                <!-- Item #{{ forloop.index }} -->
+                <item>
+                    <title><![CDATA[{{ product.title | strip_html | strip_newlines | escape | replace: 'amp;', 'and' | replace: '&#38;', 'and' | replace: "Ã©", "e" | replace: "Ã ", "a" }}]]></title>
+                    <g:brand>{{product.vendor | escape }}</g:brand>
+                    <g:product_type>{{product.type | escape }}</g:product_type>
+                    <g:id>{{product.id}}</g:id>
+                    <g:condition>New</g:condition>
+                    <description><![CDATA[{{ product.description | strip_html | strip_newlines | replace: 'amp;', 'and' | replace: '&#38;', 'and' | replace: "..", ". " | replace: "  ", " " | replace: "â€˜", "&#39;" | replace: "â€™", "&#39;" | replace: "&#8216;", "&#39;" | replace: "&#8217;", "&#39;" | replace: "&#8217;", "&#39;" | replace: "Ã¢â‚¬â„¢", "&#39;" | replace: "Ã¢â‚¬Å“", "&#39;" | replace: "Ã¢â‚¬Ëœ", "&#39;"  | replace: "Ã‚Â´", "&#39;" | replace: "â€œ", "&#34;" | replace: "â€", "&#34;" | replace: "&#8211;", "-" | replace: "Ã¢â‚¬â€œ", "-" | replace: "Ã¢â‚¬â€", "-" | replace: "â€“", "&mdash;" | replace: "â€”", "&mdash;" | replace: "%", "&#37;" | replace: "Ã‚Â©", "&copy;" | replace: "Ã‚Â®", "&reg;" | replace: "Ã¢â€žÂ¢", "&trade;" | replace: "Ã‚Â£", "&pound;" | replace: "Ã¯Â¿Â­", "&#42;" | replace: "Ã¢â‚¬Â¢", "&#42;" | replace: "Ã¢â‚¬Â", "&#39;" | replace: "&#233;", "e" | replace: "Ã©", "e" | replace: "Ã ", "a" | replace: "Ã³", "o" | replace: "Ãª", "e" | replace: "ÃƒËœ", "O" | replace: "&#8482;", "" | replace: "&#174;", "" }}]]></description>
+                    <g:image_link>{{product.featured_image | product_img_url: 'large'}}</g:image_link>
+                    <link>{{shop.url}}{{product.url}}</link>
+                    <g:price>{{product.price | money_without_currency}}</g:price>
+                    <g:quantity>1</g:quantity>
+                    <g:payment_accepted>Visa</g:payment_accepted>
+                    <g:payment_accepted>MasterCard</g:payment_accepted>
+                    <g:payment_accepted>AmericanExpress</g:payment_accepted>
+                    <g:payment_accepted>Discover</g:payment_accepted>
+                    <g:payment_notes>We also accept Paypal and Google Checkout</g:payment_notes>
+                </item>
+            {% endfor %}
+        {% endpaginate %}
+    </channel>
+</rss>

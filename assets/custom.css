@@ -1,11 +1,18 @@
 /* Cam's Foundation Extras */
-	/* Why the hell do lists still put their style outside the div? */
-	ul {
-		list-style-position: inside;
+
+	/* Some things need to be hidden sometimes */
+	.hidden {
+ 		display: none;
 	}
+
 	/* Some things need aligning */
 	.align-right {
 		text-align: right;
+	}
+
+	/* Why the hell do lists still put their style outside the div? */
+	ol, ul {
+		list-style-position: inside;
 	}
 	
 	/* Product Loop - Change the breakpoint of product grids to suit */
@@ -14,6 +21,15 @@
 			position: relative;
 			width: 33.33333%;
 			}
+	}
+
+	/* Foundation reveal reveals some problems due to it's necessitating that the modal window should be coded in the footer. Oobviously this isn't practical in this case */
+	.reveal-modal {
+        position:fixed !important;
+        overflow:scroll !important;
+        top:10% !important;
+        /* text-align:center; */
+        max-height:80%;
 	}
 
 /* Foundation Icon Fonts */

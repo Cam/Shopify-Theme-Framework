@@ -20,7 +20,7 @@
 		{% for item in cart.items %}    
 
 		  {% comment %}
-		  Determining the handle of the collection that was last seen for the 'continue shopping' link.
+			Determine the handle of the collection that was last seen for the 'continue shopping' link
 		  {% endcomment %}
   
 		  {% if forloop.first %}
@@ -99,8 +99,7 @@
 
   
 	  {% comment %}
-	  For the checkout and update buttons to work, they need to use
-	  a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
+	  	 For the checkout and update buttons to work, they need to have the name attribute set to 'checkout' and 'update', respectively (case-sensitive)
 	  {% endcomment %}
   
 		<div class="row">
@@ -109,9 +108,9 @@
 			</div>
 			<div class="large-6 columns align-right">
 				<h4>Subtotal <em>{{ cart.total_price | money }}</em></h4>
-				<input class="button small" type="submit" name="update" value="Update cart" />
+				<input class="button" type="submit" name="update" value="Update cart" />
 				<span class="or">&nbsp;</span>
-				<input class="button small" type="submit" name="checkout" value="Check out" />    
+				<input class="button" type="submit" name="checkout" value="Check out" />    
 				{% comment %}Paypal and Google checkout buttons{% endcomment %}
 				{% if additional_checkout_buttons %}
 				<p class="additional-checkout-buttons">

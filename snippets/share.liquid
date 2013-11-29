@@ -1,0 +1,12 @@
+<!-- Sharing is caring -->
+
+        <div class="large-12 columns">
+            <ul class="social-sharing">
+              <li>Share: </li>
+              <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ product.title | truncate: 30 }}&url=http%3A%2F%2F{{ shop.domain }}{{ product.url | replace: '/', '%2F' }}&via=rcinteriors"><i class="fi-social-twitter"></i></a></li>
+              <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-facebook"></i></a></li>
+              <li><a target="_blank" href="https://plus.google.com/share?url=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-google-plus"></i></a></li>
+              <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://{{ shop.domain }}{{ product.url }}&title={{ product.title | truncate: 30 }}&summary={{ product.description | strip_html | truncate: 240 }}&source=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-linkedin"></i></a></li>
+              <li><a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://{{ shop.domain }}{{ product.url }}&description={{ product.description | strip_html | truncate: 240 }}&media={{ product.featured_image.src | product_img_url: 'large' }}"><i class="fi-social-pinterest"></i></a></li>
+            </ul>
+        </div>

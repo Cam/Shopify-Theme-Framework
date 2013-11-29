@@ -31,13 +31,13 @@
 								<span class="sale-tag"></span>
 							{% endif %}
 						{% endif %}
-						<a href="{{ url }}">
+						<a href= "{{ product.url | within: collection }}">
 							<img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.title | escape  }}" />
 						</a>
 					</div>
   
 				  <div class="panel preview-details">
-					<a href="{{ url }}" class="clearfix">
+					<a href="{{ product.url | within: collection }}" class="clearfix">
 
 						<h5 class="title"><a href= "{{ product.url | within: collection }}">{{ product.title | truncate: 30 }}</a></h5>
 						{% if settings.product_vendor %}
