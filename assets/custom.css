@@ -55,12 +55,6 @@ textarea {
 	height: 1.9rem;
 }
 
-
-/* Just in case your top bar menu gets too big */
-.top-bar {
-  	overflow: hidden;
-}
-
 /* Recent Blog Snippet */
 ul.recent-blog {
 	list-style-type: none;
