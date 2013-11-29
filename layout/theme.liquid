@@ -7,8 +7,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">  
 
-	{% comment %} Shopify Head Begin {% endcomment %}
-
 	{% if template == 'index' %}
 		<title>{{ shop.name }} | {{ page_title }}</title>
 	{% elsif template == '404' %}
@@ -27,20 +25,23 @@
 	{% endunless %}
 
 	{{ content_for_header }}
-
+  
+  	<!-- CSS -->
 	{{ 'normalize.css' | asset_url | stylesheet_tag }}
 	{{ 'style.css' | asset_url | stylesheet_tag }}
 	{{ 'foundation-icons.css' | asset_url | stylesheet_tag }}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
+  
+  	<!-- Jquery needs to be in the header -->
+  	{{ 'jquery.js' | asset_url | script_tag }}
 
-	{% if template contains 'customers' %}
+	<!-- Shopify js -->
+  	{% if template contains 'customers' %}
 		{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
 		{{ 'customer_area.js'  | shopify_asset_url | script_tag }}
 	{% endif %}
 
 	{{ 'option_selection.js' | shopify_asset_url | script_tag }}
-
-	{{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
 	
 	<!-- Icons -->
 	<link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon" />
@@ -94,15 +95,10 @@
   	<!-- End Include Footer Content -->
   
   	<!-- Scripts -->
-        <script>
-        document.write('<script src=' + ('__proto__' in {} ? '{{ 'zepto.js' | asset_url }}' : '{{ 'jquery.js' | asset_url }}') + '><\/script>');
-        </script>
-      
-        {{ 'foundation.min.js' | asset_url | script_tag }}
-      
-        <script>
-        $(document).foundation();
-        </script>
+		{{ 'foundation.min.js' | asset_url | script_tag }}
+		<script>
+  			$(document).foundation();
+		</script>
       
         <!-- Let's add a product zoom becaue Foundation doesn't have one. Thank's to Jack Moore! -->
         {{ 'jquery.zoom.js' | asset_url | script_tag }}

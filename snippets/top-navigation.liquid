@@ -69,13 +69,22 @@ Positioning the Bar: The top bar is built with a single nav element with a class
                     <a class="small button" href="/checkout"><i class="fi-credit-card white"></i> Check Out</a>
                 </li>
                 {% endif %} -->
-                <li class="has-form search-textarea">
+
+				<!-- Search Form -->
+                <li class="has-form">
                     <form action="/search" method="get" class="search-form" role="search">
-                    <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" />
+                        <div class="row collapse">
+                            <div class="large-8 small-9 columns">
+                                <input name="q" type="text" id="search-field" placeholder="Search store..." class="hint" >
+                            </div>
+                            <div class="large-4 small-3 columns">
+                                <input class="alert button expand" type="submit" id="search-submit" value="Search" />
+                            </div>
+                        </div>
+                    </form>
                 </li>
-                <li class="has-form search-submit">
-                    <input class="small button" type="submit" id="search-submit" value="Search" /></form>
-                </li>
+              	<!-- End Search Form -->
+
             </ul>
 
         </section>

@@ -4,7 +4,7 @@
     </a>
 </div>
 
-<div id="myModal{{ product.url | within: collection | replace: '/', '-' }}" class="reveal-modal expand" style="position:fixed;">
+<div id="myModal{{ product.url | within: collection | replace: '/', '-' }}" class="reveal-modal expand" style="position:fixed;" data-reveal>
   	<form action="/cart/add" method="post" enctype="multipart/form-data" style="margin:0;">
       	<div class="row">
             <div class="large-6 columns">            

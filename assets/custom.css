@@ -13,6 +13,7 @@
 	/* Why the hell do lists still put their style outside the div? */
 	ol, ul {
 		list-style-position: inside;
+  		margin-left:0;
 	}
 	
 	/* Product Loop - Change the breakpoint of product grids to suit */
@@ -28,7 +29,6 @@
         position:fixed !important;
         overflow:scroll !important;
         top:10% !important;
-        /* text-align:center; */
         max-height:80%;
 	}
 
@@ -50,19 +50,15 @@ textarea {
 	min-height: 100px;
 }
 
-/* Product Preview Loop Fixes */
-.product-preview {
-/*	max-width: 480px; */
+/* Top Bar Form Height Fix */
+.top-bar input[type="text"], .top-bar .button {
+	height: 1.9rem;
 }
 
-/* Set the Search in the header to sit together nicely on wide screens */
-@media only screen and (min-width: 58.75em) {
-	.top-bar .search-textarea {
-		padding-right: 0 !important;
-	}
-	.top-bar .search-submit {
-		padding-left: 0 !important;
-	}
+
+/* Just in case your top bar menu gets too big */
+.top-bar {
+  	overflow: hidden;
 }
 
 /* Recent Blog Snippet */
