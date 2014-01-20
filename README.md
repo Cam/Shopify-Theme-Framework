@@ -9,8 +9,8 @@ The template is intended as a rapid Shopify theme development framework for deve
 
 Demo: http://foundation-theme.myshopify.com
 
-More info:
 Zurb Foundation Docs: http://foundation.zurb.com/docs
+
 Shopify Theme Docs: http://docs.shopify.com/themes
 
 =========================
