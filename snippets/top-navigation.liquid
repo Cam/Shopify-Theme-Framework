@@ -39,7 +39,7 @@ Positioning the Bar: The top bar is built with a single nav element with a class
                 <ul class="f-dropdown dropdown" id="drop-{{ forloop.index }}">
                     {% if has_sub_menu %}
                       {% for l in linklists[child_list_handle].links %}
-                      <li class="small-12 columnds{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">
+                      <li class="small-12 columns{% if forloop.first %} first{% elsif forloop.last %} last{% endif %}{% if l.active %} active{% endif %}">
                         <a class="{% if forloop.first %}first{% elsif forloop.last %}last{% endif %}" href="{{ l.url }}">{{ l.title }}</a>
                       </li>
                       {% endfor %}
