@@ -1,4 +1,4 @@
-Shopify Foundation Theme
+Shopify Theme Framework
 ========================
 
 Hey hey hey ;)
