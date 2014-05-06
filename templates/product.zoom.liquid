@@ -25,28 +25,51 @@
 		</div>
       
 		<!-- #product-photos -->
-	    <div class="large-6 columns" id="product-images">
-	        <div id="zoom{{ product.url | within: collection | replace: '/', '-' }}">
-				<img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.featured_image.alt | escape }}" id="product_feature_image" />
+		
+			  <!-- for product image zoom - use the #id sets here for different behaviour - we add the stripped product URL to give it a unique ID -->
+				<script>
+					$(document).ready(function(){
+						$('#zoom{{ product.url | within: collection | replace: '/', '-' }}').zoom();
+						$('#grab{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'grab' });
+						$('#click{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'click' });			 
+						$('#toggle{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'toggle' });
+					});
+				</script>
+				
+		<div class="large-6 columns" id="product-photos">
+  
+		  {% if product.images.size == 0 %}
+
+			<div id="zoom{{ product.url | within: collection | replace: '/', '-' }}">
+				<img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" id="product_feature_image" />
 			</div>
 	
-	        {% if product.images.size > 1 %}
-	            <ul class="medium-block-grid-4 product_thumbs">
-	                {% for image in product.images %}
-	                    <li><a href="{{ image | product_img_url: 'grande' }}" title="{{ product.title }}"><img class="th" src="{{ image | product_img_url: 'small' }}" alt="{{ product.title | escape }}"></a></li>
-	                {% endfor %}        
-	            </ul>
-	        {% endif %}
-	    </div>
-		<!-- for product image zoom - use the #id sets here for different behaviour - we add the stripped product URL to give it a unique ID -->
-		<script>
-			$(document).ready(function(){
-				$('#zoom{{ product.url | within: collection | replace: '/', '-' }}').zoom();
-				$('#grab{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'grab' });
-				$('#click{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'click' });			 
-				$('#toggle{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'toggle' });
-			});
-		</script>
+		  {% else %}
+	
+			<div id="zoom{{ product.url | within: collection | replace: '/', '-' }}">
+				<img src="{{ product.featured_image.src | product_img_url: 'master' }}" alt="{{ product.featured_image.alt | escape }}" id="product_feature_image" />
+			</div>
+
+			{% if product.images.size > 1 %}
+			<br />
+			<ul class="clearing-thumbs" data-clearing style="position:relative;">
+			  {% for image in product.images offset:1 %}
+			  <li>
+				<a href="#" data-reveal-id="myModal{{ image.id }}">
+				  <img src="{{ image.src | product_img_url: 'compact' }}" alt="{{ image.alt | escape }}" />
+				</a>
+			  </li>
+			  <div id="myModal{{ image.id }}" class="reveal-modal expand" style="position:fixed;" data-reveal >
+			  		<img src="{{ image.src | product_img_url: 'master' }}" alt="{{ image.alt | escape }}" />
+			  		<a class="close-reveal-modal">&#215;</a>
+			  </div>
+			  {% endfor %}
+			</ul>
+			{% endif %}
+	
+		  {% endif %}
+
+		</div>
 		<!-- End #product-photos -->
       
 		<!-- #product-details -->

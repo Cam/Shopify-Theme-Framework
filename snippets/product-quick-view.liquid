@@ -1,5 +1,5 @@
-<div style="float:right;">
-	<a href="#" data-reveal-id="myModal{{ product.url | within: collection | replace: '/', '-' }}">
+<div style="float:right;" data-tooltip data-options="disable_for_touch:true" class="has-tip tip-bottom noradius" title="{{ product.title }} Quick View">
+    <a href="#" data-reveal-id="myModal{{ product.url | within: collection | replace: '/', '-' }}">
         <i class="fi-magnifying-glass"></i>
     </a>
 </div>
@@ -7,8 +7,22 @@
 <div id="myModal{{ product.url | within: collection | replace: '/', '-' }}" class="reveal-modal expand" style="position:fixed;" data-reveal>
   	<form action="/cart/add" method="post" enctype="multipart/form-data" style="margin:0;">
       	<div class="row">
-            <div class="large-6 columns">            
-                <img src="{{ product.featured_image | product_img_url: 'grande' }}" alt="{{ product.title | escape  }}" />
+            <div class="large-6 columns">
+            
+			  <!-- for product image zoom - use the #id sets here for different behaviour - we add the stripped product URL to give it a unique ID -->
+				<script>
+					$(document).ready(function(){
+						$('#zoom{{ product.url | within: collection | replace: '/', '-' }}').zoom();
+						$('#grab{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'grab' });
+						$('#click{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'click' });			 
+						$('#toggle{{ product.url | within: collection | replace: '/', '-' }}').zoom({ on:'toggle' });
+					});
+				</script>
+                
+                <div id="zoom{{ product.url | within: collection | replace: '/', '-' }}">
+                	<img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.title | escape  }}" />
+                </div>
+                	
             </div>
             <div class="large-6 columns">
                 <h1 itemprop="name">{{ product.title }}</h1>

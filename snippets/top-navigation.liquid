@@ -4,12 +4,12 @@
 Positioning the Bar: The top bar is built with a single nav element with a class of top-bar. It will take on full-browser width by default. To make the top bar stay fixed as you scroll, wrap it in div class="fixed". If you want your navigation to be set to your grid width, wrap it in div class="contain-to-grid". You may use fixed and contain-to-grid together in the wrapping div (div class="contain-to-grid fixed).
 -->
 
-	<nav class="top-bar" role="navigation" data-options="is_hover:false" data-topbar>
+	<nav class="top-bar" role="navigation" data-topbar>
       
       	<!-- This is where the site title goes... remove " {{ shop.name }}" to disable it -->
 		<ul class="title-area">
 			<li class="name">
-				<h1><a href="/"><i class="fi-home white"></i> {{ shop.name }}</a></h1>
+				<h1><a href="/"><i class="fi-home white"></i><!-- {{ shop.name }}--></a></h1>
 			</li>
 			<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 		</ul>
@@ -60,7 +60,9 @@ Positioning the Bar: The top bar is built with a single nav element with a class
             <ul class="right">
                 <li class="divider"></li>
                 <li>
-                    <a href="/cart"><i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})</a>
+                  	<a href="/cart" data-tooltip data-options="disable_for_touch:true" class="has-tip tip-bottom noradius" title="{{ cart.total_price | money }}" style="border-bottom:0;">
+                      	<i class="fi-shopping-cart white"></i> {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}
+                  	</a>
                 </li>
                 <li class="divider"></li>
                 <!-- You can use the next li to add a checkout button if you like --> 
