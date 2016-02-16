@@ -1,12 +1,26 @@
 <!-- Sharing is caring -->
-
-        <div class="large-12 columns">
-            <ul class="social-sharing">
-              <li>Share: </li>
-              <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ product.title | truncate: 30 }}&url=http%3A%2F%2F{{ shop.domain }}{{ product.url | replace: '/', '%2F' }}&via=rcinteriors"><i class="fi-social-twitter"></i></a></li>
-              <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-facebook"></i></a></li>
-              <li><a target="_blank" href="https://plus.google.com/share?url=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-google-plus"></i></a></li>
-              <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://{{ shop.domain }}{{ product.url }}&title={{ product.title | truncate: 30 }}&summary={{ product.description | strip_html | truncate: 240 }}&source=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-linkedin"></i></a></li>
-              <li><a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://{{ shop.domain }}{{ product.url }}&description={{ product.description | strip_html | truncate: 240 }}&media={{ product.featured_image.src | product_img_url: 'large' }}"><i class="fi-social-pinterest"></i></a></li>
-            </ul>
-        </div>
+{% if template == 'product' %}
+    <div class="large-12 columns">
+        <br />
+        <ul class="social-sharing inline-list">
+            <li>Share: </li>
+            <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ product.title | truncate: 30 }}&url=http%3A%2F%2F{{ shop.domain }}{{ product.url | replace: '/', '%2F' }}&via=rcinteriors"><i class="fi-social-twitter"></i></a></li>
+            <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-facebook"></i></a></li>
+            <li><a target="_blank" href="https://plus.google.com/share?url=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-google-plus"></i></a></li>
+            <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://{{ shop.domain }}{{ product.url }}&title={{ product.title | truncate: 30 }}&summary={{ product.description | strip_html | truncate: 240 }}&source=http://{{ shop.domain }}{{ product.url }}"><i class="fi-social-linkedin"></i></a></li>
+            <li><a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://{{ shop.domain }}{{ product.url }}&description={{ product.description | strip_html | truncate: 240 }}&media={{ product.featured_image.src | product_img_url: 'large' }}"><i class="fi-social-pinterest"></i></a></li>
+        </ul>
+    </div>
+{% else %}
+    <div class="large-12 columns">
+        <br />
+        <ul class="social-sharing inline-list">
+            <li>Share: </li>
+            <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ article.title }}&url=http%3A%2F%2F{{ shop.domain }}{{ article.url | replace: '/', '%2F' }}&via=rcinteriors"><i class="fi-social-twitter"></i></a></li>
+            <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://{{ shop.domain }}{{ article.url }}"><i class="fi-social-facebook"></i></a></li>
+            <li><a target="_blank" href="https://plus.google.com/share?url=http://{{ shop.domain }}{{ article.url }}"><i class="fi-social-google-plus"></i></a></li>
+            <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=http://{{ shop.domain }}{{ article.url }}&title={{ article.title }}&summary={{ article.content | strip_html | truncate: 240 }}&source=http://{{ shop.domain }}{{ article.url }}"><i class="fi-social-linkedin"></i></a></li>
+            <li><a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://{{ shop.domain }}{{ article.url }}&description={{ article.content | strip_html | truncate: 240 }}&media={% assign my_image_url=article.content | escape %}{% if my_image_url contains '&lt;img' %}{% assign my_image_url = my_image_url | split: 'src=&quot;' %}{% assign my_image_url = my_image_url[1] | split: '&quot;' %}{% assign my_image_url = my_image_url[0] | remove: '//cdn' %}{% assign my_image_url = my_image_url | remove: 'http:http://'; %}{% assign my_image_url = my_image_url | remove: 'https:' %}{{ my_image_url | prepend: 'http://cdn';}}{% endif %}"><i class="fi-social-pinterest"></i></a></li>
+        </ul>
+    </div>
+{% endif %}

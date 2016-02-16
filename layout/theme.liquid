@@ -32,15 +32,14 @@
 	{{ 'foundation-icons.css' | asset_url | stylesheet_tag }}
 	{{ 'custom.css' | asset_url | stylesheet_tag }}
   
-  	<!-- Jquery needs to be in the header -->
   	{{ 'jquery.js' | asset_url | script_tag }}
+  	{{ 'custom.modernizr.js' | asset_url | script_tag }}
 
 	<!-- Shopify js -->
   	{% if template contains 'customers' %}
 		{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
 		{{ 'customer_area.js'  | shopify_asset_url | script_tag }}
 	{% endif %}
-
 	{{ 'option_selection.js' | shopify_asset_url | script_tag }}
 	
 	<!-- Icons -->
@@ -48,20 +47,39 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ 'apple-touch-icon-precomposed.png' | asset_url }}" />
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ 'apple-touch-icon-57x57-precomposed.png' | asset_url }}" />
 	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ 'apple-touch-icon-60x60-precomposed.png' | asset_url }}" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'apple-touch-icon-72x72-precomposed.png' | asset_url }}" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'apple-touch-icon-72x72-precomposed.png' | asset_url }}" /><!-- Old size, not needed -->
 	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ 'apple-touch-icon-76x76-precomposed.png' | asset_url }}" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'apple-touch-icon-114x114-precomposed.png' | asset_url }}g" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'apple-touch-icon-114x114-precomposed.png' | asset_url }}g" /><!-- Old size, not needed -->
 	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ 'apple-touch-icon-120x120-precomposed.png' | asset_url }}" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'apple-touch-icon-144x144-precomposed.png' | asset_url }}" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'apple-touch-icon-144x144-precomposed.png' | asset_url }}" /><!-- Old size, not needed -->
 	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ 'apple-touch-icon-152x152-precomposed.png' | asset_url }}" />
+	
+	<!-- Facebook Open Graph -->
+    {% if template == "product" %}
+        <meta property="og:title" content="{{ shop.name }} — {{ product.title }}"/>
+        <meta property="og:type" content="product"/>
+        <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' }}"/>
+        <meta property="og:url" content="{{ shop.url }}{{ product.url }}"/>
+    {% elsif template == "article" %}
+        <meta property="og:title" content="{{ shop.name }} — {{ article.title }}"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:image" content="{{ 'logo.png' | asset_url }}"/>
+        <meta property="og:url" content="{{ shop.url }}{{ article.url }}"/>
+    {% else %}
+        <meta property="og:title" content="{{ shop.name }}"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:image" content="{{ 'logo.png' | asset_url }}"/>
+        <meta property="og:url" content="{{ shop.url }}"/>
+    {% endif %}
+    <meta property="og:site_name" content="{{ shop.name }}"/>
 
 </head>
 
 <body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' }} antialiased" id="{{ page_title | handle }}">
 
-	<!-- Include Top Navigation -->
+	<!-- Include Header & Top Navigation -->
 		{% include 'header' %}
-	<!-- End Include Top Navigation -->
+	<!-- End Include Header & Top Navigation -->
  
   
   	<!-- Include Main Content -->
@@ -95,14 +113,19 @@
   	<!-- End Include Footer Content -->
   
   	<!-- Scripts -->
+  		<!-- Foundation scripts -->
 		{{ 'foundation.min.js' | asset_url | script_tag }}
 		<script>
   			$(document).foundation();
 		</script>
+		
+		<!-- Product Image JS by @lukebussey -->
+		{{ 'productimages.js' | asset_url | script_tag }}
       
         <!-- Let's add a product zoom becaue Foundation doesn't have one. Thank's to Jack Moore! -->
         {{ 'jquery.zoom.js' | asset_url | script_tag }}
   	<!-- End scripts -->
+  	
   
 </body>
 </html>

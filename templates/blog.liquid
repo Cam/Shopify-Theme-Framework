@@ -11,40 +11,61 @@
 
 	  {% for article in blog.articles %}
 	  <div class="blog-article{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}">
-		<h2 class="blog-article-title">
-			<a href="{{ article.url }}">{{ article.title }}</a>
-		</h2>
-		<h3 class="blog-article-date">
-			<time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
-		</h3>
-		<div class="rte">
-			{% if article.excerpt.size > 0 %}
-				{{ article.excerpt }}
-			{% else %}
-				<p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-			{% endif %}
-		</div>
-		<div class="row">
-			<div class="large-3 columns">
-				<ul class="blog-article-meta">
-				  {% if blog.comments_enabled? %}
-				  <li class="blog-article-meta-comments">
-					<a href="{{ article.url }}#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}</a>
-				  </li>
-				  {% endif %}
-				  {% if article.tags.size > 0 %}
-					{% for tag in article.tags %}
-						<li class="tag">
-							<a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}{% endunless %}
-						</li>
-					{% endfor %}
-				  {% endif %}
-				</ul>
-			</div>
-			<div class="large-9 columns read-more">
-				<a class="button small" href="{{ article.url }}">Read More →</a>
-			</div>
-		</div>
+          <h2 class="blog-article-title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+          </h2>
+          <h3 class="blog-article-date">
+              <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+          </h3>    
+        
+          <div class="row">
+              {% assign src = false %}
+              {% if article.content contains "<img" %}
+                  <div class="large-4 columns article">
+
+                      {% assign src = article.content | split: 'src="' %}
+                      {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
+
+                      {% if src %}
+                          {% assign src = src | replace:'_pico','_large' | replace:'_icon','_large'| replace:'_thumb','_large' | replace:'_small','_large' | replace:'_compact','_large' | replace:'_medium','_large' | replace:'_grande','_large' %}
+                      {% endif %}
+
+                      <a href="{{ article.url }}"><img src="{{ src }}" alt="article.title" /></a>
+                  
+                  </div>
+              {% endif %}
+              <div class="{% if article.content contains "<img" %}large-8{% else %}large-12{% endif %} columns article rte">
+              
+                  {% if article.excerpt.size > 0 %}
+                      {{ article.excerpt }}
+                  {% else %}
+                      <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+                  {% endif %}
+            
+              </div>
+          </div>
+        
+          <div class="row">
+              <div class="large-3 columns">
+                  <ul class="blog-article-meta">
+                    {% if blog.comments_enabled? %}
+                    <li class="blog-article-meta-comments">
+                      <a href="{{ article.url }}#comments">{{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}</a>
+                    </li>
+                    {% endif %}
+                    {% if article.tags.size > 0 %}
+                      {% for tag in article.tags %}
+                          <li class="tag">
+                              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}{% endunless %}
+                          </li>
+                      {% endfor %}
+                    {% endif %}
+                  </ul>
+              </div>
+              <div class="large-9 columns read-more">
+                  <a class="button small" href="{{ article.url }}">Read More →</a>
+              </div>
+          </div>
 	  </div>
 	  {% endfor %}
 

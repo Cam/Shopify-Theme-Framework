@@ -24,12 +24,9 @@
 			}
 	}
 
-	/* Foundation reveal reveals some problems due to it's necessitating that the modal window should be coded in the footer. Oobviously this isn't practical in this case */
+	/* Foundation reveal reveals some problems */
 	.reveal-modal {
-        position:fixed !important;
-        overflow:scroll !important;
         top:10% !important;
-        max-height:80%;
 	}
 
 /* Foundation Icon Fonts */
@@ -58,6 +55,11 @@ textarea {
 /* Recent Blog Snippet */
 ul.recent-blog {
 	list-style-type: none;
+}
+
+/* Product Page Thumbs */
+.product_thumbs {
+	margin-top: 20px;
 }
 
 /* Below here are CSS elements that are just here for fun c/o Cam Gould */
@@ -108,7 +110,7 @@ ul.recent-blog {
 	position: absolute;
 	top: -54px;
 	left: 3px;
-	content: "";
+	content: "";
 	font-family: "foundation-icons";
 	font-size: 3.8em;
 	color: rgba(255, 71, 65, 1.000);

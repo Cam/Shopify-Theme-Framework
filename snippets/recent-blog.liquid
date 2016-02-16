@@ -1,6 +1,6 @@
 <div class="large-12 columns">
   
-    <h2>From The Blog</h2>
+  <hr /><br /><br />
 
     <!-- Show the most recent blog article/s -->
     
@@ -21,15 +21,11 @@
                                     {% assign src = article.content | split: 'src="' %}
                                     {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn';; | replace: 'http:http://';;, 'http://';; | remove: 'https:' %}
 
-                                    {% comment %}
-                                        Let's assume you always add images to the blog as grande.
-                                    {% endcomment %}
-
                                     {% if src %}
-                                        {% assign src = src | replace:'_grande','_large' %}
+                                        {% assign src = src | replace:'_pico','_large' | replace:'_icon','_large'| replace:'_thumb','_large' | replace:'_small','_large' | replace:'_compact','_large' | replace:'_medium','_large' | replace:'_grande','_large' %}
                                     {% endif %}
 
-                                    <a href="{{ article.url }}"><img src="{{ src }}" alt="article.title" /></a>
+                                    <a href="{{ article.url }}"><img src="{{ src }}" alt="{{ article.title }}" /></a>
                                 
                                 </div>
                             {% endif %}
@@ -39,8 +35,8 @@
                                     <h3>{{ article.title }}</h3>
                                 </a>
                                 <b>{{ article.created_at | date: "%d/%m/%Y" }}</b>
-                                <br />
-                                <p>{{ article.content | strip_html | truncate: 160 }}</p>
+                                <br /><br />
+                                <p>{{ article.content | strip_html | truncatewords: 40 }}</p>
                           
                             </div>
                         </div>

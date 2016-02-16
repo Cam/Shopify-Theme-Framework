@@ -1,4 +1,4 @@
-Shopify Foundation Theme
+Shopify Theme Framework
 ========================
 
 Hey hey hey ;)
@@ -7,8 +7,11 @@ This theme is built almost entirely from the Zurb Foundation framework, and Shop
 
 The template is intended as a rapid Shopify theme development framework for developers.
 
-Check out the demo at http://foundation-theme.myshopify.com
+Demo: https://theme-framework.myshopify.com
 
+Zurb Foundation Docs: http://foundation.zurb.com/docs
+
+Shopify Theme Docs: http://docs.shopify.com/themes
 
 =========================
 

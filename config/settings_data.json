@@ -1,1 +1,28 @@
-{"current":{"customer_layout":"theme","my_text":"Form ID","products_per_row":"3","pagination_limit":"9","use_logo":false,"site_title":true,"slideshow_enable":true,"slideshow_pause":true,"slideshow_image_2_enable":true,"slideshow_image_3_enable":true,"show_sale_circle":true,"related-products":true,"footer_widgets_on":false,"mailchimp_form":false,"bottom_menu_on":true,"products_per_page":"6_products_per_page","rows_per_page":"4_rows_per_page","full_width":"true"},"presets":{"Foundation":{"use_logo":false,"customer_layout":"theme"}}}
+{
+  "current": {
+    "customer_layout": "theme",
+    "my_text": "Form ID",
+    "products_per_row": "3",
+    "pagination_limit": "9",
+    "use_logo": false,
+    "site_title": true,
+    "slideshow_enable": true,
+    "slideshow_pause": true,
+    "slideshow_image_2_enable": true,
+    "slideshow_image_3_enable": true,
+    "show_sale_circle": true,
+    "related-products": true,
+    "footer_widgets_on": false,
+    "mailchimp_form": false,
+    "bottom_menu_on": true,
+    "products_per_page": "6_products_per_page",
+    "rows_per_page": "4_rows_per_page",
+    "full_width": "true"
+  },
+  "presets": {
+    "Foundation": {
+      "use_logo": false,
+      "customer_layout": "theme"
+    }
+  }
+}
