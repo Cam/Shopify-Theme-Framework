@@ -1,5 +1,5 @@
 ------------------------
-IMPORTANT NOTICE: This project is no longer maintained by me. PRs are very welcome. You may want to check out Concrete Theme Framword by Elkfox (my agency) over at https://github.com/Elkfox/Concrete for an up to date, super lightweight Shopify theme framework.
+IMPORTANT NOTICE: This project is no longer actively updated (though PRs are very welcome). You may want to check out Concrete by Elkfox (my agency) over at https://github.com/Elkfox/Concrete for an up to date, super lightweight Shopify theme framework.
 ------------------------
 
 
