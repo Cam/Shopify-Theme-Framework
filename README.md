@@ -3,16 +3,14 @@ IMPORTANT NOTICE: This repository is no longer actively updated (though PRs are 
 The project has moved to https://github.com/Elkfox/Shopify-Theme-Framework
 
 ------------------------
-
-
-
-
-
-
-Shopify Theme Framework
-========================
-
-Hey hey hey ;)
+.
+.
+.
+.
+.
+.
+Shopify Theme Framework (Legacy)
+================================
 
 This theme is built almost entirely from the Zurb Foundation framework, and Shopify liquid markup, with a few little extra touches added for good measure.
 
